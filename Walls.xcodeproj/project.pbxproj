@@ -8,20 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		C5B240801BDE13360045C5AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2407F1BDE13360045C5AE /* AppDelegate.swift */; };
-		C5B240821BDE13360045C5AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B240811BDE13360045C5AE /* ViewController.swift */; };
+		C5B240821BDE13360045C5AE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B240811BDE13360045C5AE /* MainViewController.swift */; };
 		C5B240851BDE13360045C5AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5B240831BDE13360045C5AE /* Main.storyboard */; };
 		C5B240871BDE13360045C5AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5B240861BDE13360045C5AE /* Assets.xcassets */; };
 		C5B2408A1BDE13360045C5AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5B240881BDE13360045C5AE /* LaunchScreen.storyboard */; };
+		C5B240931BDE154D0045C5AE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B240921BDE154D0045C5AE /* BaseViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		C5B240951BDE15E10045C5AE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B240941BDE15E10045C5AE /* MapKit.framework */; };
+		C5B240981BDE1AB70045C5AE /* LocationDelegateImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B240971BDE1AB70045C5AE /* LocationDelegateImpl.swift */; settings = {ASSET_TAGS = (); }; };
+		C5B2409B1BDE2B610045C5AE /* UserLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2409A1BDE2B610045C5AE /* UserLocationAnnotation.swift */; settings = {ASSET_TAGS = (); }; };
+		C5B2409D1BDE39D50045C5AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2409C1BDE39D50045C5AE /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C5B2407C1BDE13360045C5AE /* Walls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B2407F1BDE13360045C5AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C5B240811BDE13360045C5AE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C5B240811BDE13360045C5AE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5B240841BDE13360045C5AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C5B240861BDE13360045C5AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5B240891BDE13360045C5AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C5B2408B1BDE13360045C5AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5B240921BDE154D0045C5AE /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C5B240941BDE15E10045C5AE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C5B240971BDE1AB70045C5AE /* LocationDelegateImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDelegateImpl.swift; sourceTree = "<group>"; };
+		C5B2409A1BDE2B610045C5AE /* UserLocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationAnnotation.swift; sourceTree = "<group>"; };
+		C5B2409C1BDE39D50045C5AE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5B2409D1BDE39D50045C5AE /* CoreLocation.framework in Frameworks */,
+				C5B240951BDE15E10045C5AE /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +50,8 @@
 		C5B240731BDE13360045C5AE = {
 			isa = PBXGroup;
 			children = (
+				C5B2409C1BDE39D50045C5AE /* CoreLocation.framework */,
+				C5B240941BDE15E10045C5AE /* MapKit.framework */,
 				C5B2407E1BDE13360045C5AE /* Walls */,
 				C5B2407D1BDE13360045C5AE /* Products */,
 			);
@@ -54,14 +68,41 @@
 		C5B2407E1BDE13360045C5AE /* Walls */ = {
 			isa = PBXGroup;
 			children = (
+				C5B240991BDE2B4F0045C5AE /* Pin */,
+				C5B240961BDE1AA30045C5AE /* Tools */,
+				C5B240911BDE151C0045C5AE /* Controller */,
 				C5B2407F1BDE13360045C5AE /* AppDelegate.swift */,
-				C5B240811BDE13360045C5AE /* ViewController.swift */,
 				C5B240831BDE13360045C5AE /* Main.storyboard */,
 				C5B240861BDE13360045C5AE /* Assets.xcassets */,
 				C5B240881BDE13360045C5AE /* LaunchScreen.storyboard */,
 				C5B2408B1BDE13360045C5AE /* Info.plist */,
 			);
 			path = Walls;
+			sourceTree = "<group>";
+		};
+		C5B240911BDE151C0045C5AE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C5B240811BDE13360045C5AE /* MainViewController.swift */,
+				C5B240921BDE154D0045C5AE /* BaseViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		C5B240961BDE1AA30045C5AE /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				C5B240971BDE1AB70045C5AE /* LocationDelegateImpl.swift */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		C5B240991BDE2B4F0045C5AE /* Pin */ = {
+			isa = PBXGroup;
+			children = (
+				C5B2409A1BDE2B610045C5AE /* UserLocationAnnotation.swift */,
+			);
+			name = Pin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,6 +136,12 @@
 				TargetAttributes = {
 					C5B2407B1BDE13360045C5AE = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = W6LNED9894;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -134,8 +181,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5B240821BDE13360045C5AE /* ViewController.swift in Sources */,
+				C5B240821BDE13360045C5AE /* MainViewController.swift in Sources */,
 				C5B240801BDE13360045C5AE /* AppDelegate.swift in Sources */,
+				C5B2409B1BDE2B610045C5AE /* UserLocationAnnotation.swift in Sources */,
+				C5B240931BDE154D0045C5AE /* BaseViewController.swift in Sources */,
+				C5B240981BDE1AB70045C5AE /* LocationDelegateImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +247,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -236,7 +286,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -248,8 +298,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Walls/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.epsi.mobile.Walls;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -260,8 +311,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Walls/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.epsi.mobile.Walls;
 				PRODUCT_NAME = "$(TARGET_NAME)";
