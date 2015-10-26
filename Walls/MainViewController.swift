@@ -135,6 +135,8 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
             view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         }
         
+        view?.image = UIImage(named: "blueDot")
+        
         return view
     }
 
