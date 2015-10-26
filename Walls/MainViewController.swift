@@ -111,11 +111,13 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     
     //Table View DATASOURCE
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0;
+        return 50;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let tableViewCell:UITableViewCell = UITableViewCell()
+        let tableViewCell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "arroundMe")
+        tableViewCell.imageView!.image = UIImage(named: "blueDot")
+        tableViewCell.textLabel!.text = "test"
         return tableViewCell
     }
     
