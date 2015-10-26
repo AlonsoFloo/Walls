@@ -12,8 +12,6 @@ import CoreLocation
 import Foundation
 
 class MainViewController: BaseViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate {
-    
-    static let mapViewHeight = 200;
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
@@ -74,13 +72,23 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
             let superViewHeight = self.view.frame.height;
             mapViewHeight.constant = superViewHeight
             mapViewBtn.enabled = false
-        } else {
             
+            let backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Done, target: self, action: Selector("backBtnPressed"))
+            self.navigationItem.leftBarButtonItem = backBtn
+        } else {
+            self.navigationItem.leftBarButtonItem = nil
+            mapViewBtn.enabled = true
+            
+            mapViewHeight.constant = 200
         }
         
         UIView.animateWithDuration(0.5) {
             self.view.layoutIfNeeded()
         }
+    }
+    
+    func backBtnPressed() {
+        displayMapView(full: false)
     }
     
     // LOCATION DELEGATE

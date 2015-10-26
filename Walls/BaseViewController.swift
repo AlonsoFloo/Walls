@@ -19,6 +19,7 @@ class BaseViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.navigationController?.title = "Walls"
+        self.navigationItem.title = "Walls"
     }
     
     override func didReceiveMemoryWarning() {
