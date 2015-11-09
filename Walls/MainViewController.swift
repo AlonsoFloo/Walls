@@ -166,6 +166,7 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         userLocation = UserLocationAnnotation(coordinate: location2D)
         mapView.addAnnotation(userLocation!)
         
+        mapView.centerCoordinate = location2D
         var zoomIn = mapView.region;
         zoomIn.span.latitudeDelta /= 150
         zoomIn.span.longitudeDelta /= 150

@@ -79,7 +79,7 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
         if (pointList.count == indexPath.row) {
         } else {
             let point = pointList[indexPath.row]
-            tableViewCell.imageView!.image = UIImage(named: "blueDot")
+            tableViewCell.imageView!.image = UIImage(named: "pointLoc")
             tableViewCell.textLabel!.text = point.title
         }
         
