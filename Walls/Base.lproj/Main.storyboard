@@ -78,12 +78,12 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlR-bL-TP6">
                                 <rect key="frame" x="0.0" y="204" width="600" height="60"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueDot" translatesAutoresizingMaskIntoConstraints="NO" id="Vez-qo-6GY">
-                                        <rect key="frame" x="20" y="14" width="32" height="32"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pointLoc" translatesAutoresizingMaskIntoConstraints="NO" id="Vez-qo-6GY">
+                                        <rect key="frame" x="20" y="15" width="30" height="30"/>
                                         <animations/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ir-dO-wKF">
-                                        <rect key="frame" x="82" y="30" width="0.0" height="0.0"/>
+                                        <rect key="frame" x="80" y="30" width="0.0" height="0.0"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="20"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -301,6 +301,7 @@
     </scenes>
     <resources>
         <image name="blueDot" width="32" height="32"/>
+        <image name="pointLoc" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="O0c-af-bEB"/>

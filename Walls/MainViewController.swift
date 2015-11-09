@@ -160,22 +160,17 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
             return
         }
 
-        var refreshMap = false
         let location2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        if (userLocation == nil) {
-            userLocation = UserLocationAnnotation(coordinate: location2D)
-            mapView.addAnnotation(userLocation!)
-            refreshMap = true
-        } else {
-            mapView.removeAnnotation(userLocation!)
-            mapView.addAnnotation(userLocation!)
-        }
+        userLocation = UserLocationAnnotation(coordinate: location2D)
+        mapView.addAnnotation(userLocation!)
         
         mapView.centerCoordinate = location2D
-        
-        if refreshMap {
-            refreshBtnPressed()
-        }
+        var zoomIn = mapView.region;
+        zoomIn.span.latitudeDelta /= 50
+        zoomIn.span.longitudeDelta /= 50
+        mapView.setRegion(zoomIn, animated: true)
+        self.locationManager.stopUpdatingLocation()
+        refreshBtnPressed()
     }
     
     //Table View DATASOURCE
@@ -187,7 +182,7 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         let point = pointList[indexPath.row]
         
         let tableViewCell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "arroundMe")
-        tableViewCell.imageView!.image = UIImage(named: "blueDot")
+        tableViewCell.imageView!.image = UIImage(named: "pointLoc")
         tableViewCell.textLabel!.text = point.title
         return tableViewCell
     }
@@ -211,12 +206,13 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         if let dequeView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier!) {
             view = dequeView
         } else {
-            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier!)
         }
         
         if identifier == "pointLoc" {
+            view?.image = UIImage(named: "pointLoc")
         } else {
-            view?.image = UIImage(named: "blueDot")
+            view?.image = UIImage(named: "userLoc")
         }
         
         return view

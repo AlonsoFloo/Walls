@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "local_30.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "BlueDot.png",
+      "filename" : "local_60.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "local_90.png",
       "scale" : "3x"
     }
   ],
