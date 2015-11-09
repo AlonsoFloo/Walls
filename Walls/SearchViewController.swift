@@ -51,6 +51,10 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
         let text = searchField.text
     }
     
+    @IBAction func addButtonPressed() {
+        self.performSegueWithIdentifier("addWallSegueID", sender: self)
+    }
+    
     //TextField DELEGATE
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -86,6 +90,7 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if (pointList.count == indexPath.row) {
             // show add
+            addButtonPressed()
         } else {
             // show wall
             selectedPoint = pointList[indexPath.row]

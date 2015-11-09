@@ -49,7 +49,7 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         self.automaticallyAdjustsScrollViewInsets = false
         
         //Show research btn
-        let searchBtn = UIBarButtonItem(title: "Search", style: UIBarButtonItemStyle.Done, target: self, action: Selector("searchBtnPressed"))
+        let searchBtn = UIBarButtonItem(title: "Search", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("searchBtnPressed"))
         self.navigationItem.rightBarButtonItems = [searchBtn]
         
         tableView.tableFooterView = UIView()
@@ -57,13 +57,15 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        if #available(iOS 9.0, *) {
-            self.locationManager.requestLocation()
-        } else {
-            self.locationManager.startUpdatingLocation()
-        };
+        if userLocation == nil {
+            self.locationManager.requestWhenInUseAuthorization()
+            
+            if #available(iOS 9.0, *) {
+                self.locationManager.requestLocation()
+            } else {
+                self.locationManager.startUpdatingLocation()
+            };
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -164,10 +166,10 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         userLocation = UserLocationAnnotation(coordinate: location2D)
         mapView.addAnnotation(userLocation!)
         
-        mapView.centerCoordinate = location2D
         var zoomIn = mapView.region;
-        zoomIn.span.latitudeDelta /= 50
-        zoomIn.span.longitudeDelta /= 50
+        zoomIn.span.latitudeDelta /= 150
+        zoomIn.span.longitudeDelta /= 150
+        zoomIn.center = location2D
         mapView.setRegion(zoomIn, animated: true)
         self.locationManager.stopUpdatingLocation()
         refreshBtnPressed()
