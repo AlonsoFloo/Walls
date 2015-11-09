@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import MapKit
-import CoreLocation
 import Foundation
 
-class SearchViewController: BaseViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate {
+class SearchViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    
+    var selectedPoint:PointLocationAnnotation!
     
     internal var pointList:[PointLocationAnnotation]!
     
@@ -38,6 +38,13 @@ class SearchViewController: BaseViewController, CLLocationManagerDelegate, UITab
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "wallSegueID" {
+            let vc = segue.destinationViewController as! WallViewController
+            vc.wall = selectedPoint.wall;
+        }
     }
     
     @IBAction func okBoutonClicked() {
@@ -81,7 +88,8 @@ class SearchViewController: BaseViewController, CLLocationManagerDelegate, UITab
             // show add
         } else {
             // show wall
-            let point = pointList[indexPath.row]
+            selectedPoint = pointList[indexPath.row]
+            self.performSegueWithIdentifier("wallSegueID", sender: self)
         }
     }
     

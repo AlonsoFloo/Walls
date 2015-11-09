@@ -23,6 +23,25 @@
             </objects>
             <point key="canvasLocation" x="-191" y="-490"/>
         </scene>
+        <!--Wall View Controller-->
+        <scene sceneID="EDz-kd-4m6">
+            <objects>
+                <viewController id="z8m-XC-zI7" customClass="WallViewController" customModule="Walls" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gq3-sh-4kS"/>
+                        <viewControllerLayoutGuide type="bottom" id="bsK-tL-TN0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="alm-cH-2Aa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oCq-ih-rAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="781" y="-1375"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -70,16 +89,33 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yUC-jR-kKz">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                        <animations/>
+                                        <connections>
+                                            <action selector="displayMapViewPointControlPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="WfT-6b-CnT"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="yUC-jR-kKz" firstAttribute="leading" secondItem="IlR-bL-TP6" secondAttribute="leading" id="1i8-Ch-yUe"/>
                                     <constraint firstItem="Vez-qo-6GY" firstAttribute="leading" secondItem="IlR-bL-TP6" secondAttribute="leading" constant="20" id="9aB-hW-Rer"/>
                                     <constraint firstItem="8ir-dO-wKF" firstAttribute="leading" secondItem="Vez-qo-6GY" secondAttribute="trailing" constant="30" id="DtB-Op-Ue2"/>
+                                    <constraint firstAttribute="trailing" secondItem="yUC-jR-kKz" secondAttribute="trailing" id="Fye-ZU-ePt"/>
                                     <constraint firstItem="8ir-dO-wKF" firstAttribute="centerY" secondItem="IlR-bL-TP6" secondAttribute="centerY" id="JOg-VW-lI7"/>
                                     <constraint firstAttribute="height" constant="60" id="MUZ-Td-VPe"/>
                                     <constraint firstItem="Vez-qo-6GY" firstAttribute="centerY" secondItem="IlR-bL-TP6" secondAttribute="centerY" id="gDo-b0-1vj"/>
+                                    <constraint firstAttribute="bottom" secondItem="yUC-jR-kKz" secondAttribute="bottom" id="gqi-zT-mde"/>
+                                    <constraint firstItem="yUC-jR-kKz" firstAttribute="top" secondItem="IlR-bL-TP6" secondAttribute="top" constant="15" id="iJH-Di-X4A"/>
+                                    <constraint firstItem="yUC-jR-kKz" firstAttribute="top" secondItem="IlR-bL-TP6" secondAttribute="top" id="ueV-jz-PSd"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="iJH-Di-X4A"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1f-lZ-v9x">
                                 <rect key="frame" x="0.0" y="64" width="600" height="200"/>
@@ -134,6 +170,7 @@
                         <outlet property="pointControlViewLabel" destination="8ir-dO-wKF" id="rK9-tn-mW1"/>
                         <outlet property="tableView" destination="7Fz-qx-HRH" id="GNt-ai-LSh"/>
                         <segue destination="w87-MB-VAG" kind="show" identifier="searchSegueID" id="Rnq-no-fBY"/>
+                        <segue destination="z8m-XC-zI7" kind="show" identifier="wallSegueID" id="HCC-Wd-Ut2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -254,6 +291,7 @@
                     <connections>
                         <outlet property="searchField" destination="sCY-MF-75B" id="c95-kt-diZ"/>
                         <outlet property="tableView" destination="efU-yV-qC3" id="3r6-te-axy"/>
+                        <segue destination="z8m-XC-zI7" kind="show" identifier="wallSegueID" id="O0c-af-bEB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQM-vl-Pbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -264,4 +302,7 @@
     <resources>
         <image name="blueDot" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="O0c-af-bEB"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -26,6 +26,8 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     private var userLocation:UserLocationAnnotation?
     
     private var pointList:[PointLocationAnnotation]!
+    internal var selectedPoint:PointLocationAnnotation!
+    
     @IBOutlet weak var pointControlViewLabel: UILabel!
     
     override func viewDidLoad() {
@@ -77,6 +79,9 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         if segue.identifier == "searchSegueID" {
             let vc = segue.destinationViewController as! SearchViewController
             vc.pointList = pointList;
+        } else if segue.identifier == "wallSegueID" {
+            let vc = segue.destinationViewController as! WallViewController
+            vc.wall = selectedPoint.wall;
         }
     }
     
@@ -116,23 +121,32 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         }
     }
     
-    func displayMapViewPointControle(show doShow: Bool, title aTitle:String) {
+    func displayMapViewPointControle(show doShow: Bool, point aPoint:PointLocationAnnotation!) {
         if (doShow) {
             pointControlView.hidden = false
         } else {
             pointControlView.hidden = true
         }
         
-        pointControlViewLabel.text = aTitle
+        if aPoint != nil {
+            pointControlViewLabel.text = aPoint.title
+            selectedPoint = aPoint
+        } else {
+            pointControlViewLabel.text = ""
+        }
         
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
         }
     }
     
+    @IBAction func displayMapViewPointControlPressed() {
+        self.performSegueWithIdentifier("wallSegueID", sender: self)
+    }
+    
     override func backBtnPressed() {
         displayMapView(full: false)
-        displayMapViewPointControle(show: false, title: "")
+        displayMapViewPointControle(show: false, point:nil)
     }
     
     @IBAction func refreshBtnPressed() {
@@ -175,7 +189,8 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     
     //Table View DELEGATE
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        selectedPoint = pointList[indexPath.row]
+        self.performSegueWithIdentifier("wallSegueID", sender: self)
     }
     
     //MK Map View DELEGATE
@@ -203,14 +218,13 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        if let pointLocation = view.annotation as? PointLocationAnnotation,
-            let pointTitle = pointLocation.title {
-            displayMapViewPointControle(show: true, title: pointTitle)
+        if let pointLocation = view.annotation as? PointLocationAnnotation {
+            displayMapViewPointControle(show: true, point: pointLocation)
         }
     }
     
     func mapView(mapView: MKMapView, didDeSelectAnnotationView view: MKAnnotationView) {
-        displayMapViewPointControle(show: false, title: "")
+        displayMapViewPointControle(show: false, point:nil)
     }
     
     //Request Delegate

@@ -36,6 +36,7 @@ public class PointLocationAnnotation : NSObject, MKAnnotation {
         super.init()
         self.location = CLLocationCoordinate2D(latitude: aWall.latitude, longitude: aWall.longitude)
         self.locationTitle = aWall.title
+        self.wall = aWall
     }
     
 }
