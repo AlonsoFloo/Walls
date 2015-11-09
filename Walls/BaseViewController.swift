@@ -9,10 +9,6 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,5 +23,17 @@ class BaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func displayBackBtn(show doShow:Bool) {
+        if (doShow) {
+            let backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Done, target: self, action: Selector("backBtnPressed"))
+            self.navigationItem.leftBarButtonItem = backBtn
+        } else {
+            self.navigationItem.leftBarButtonItem = nil
+        }
+    }
+    
+    func backBtnPressed() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     
 }

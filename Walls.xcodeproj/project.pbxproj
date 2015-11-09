@@ -18,6 +18,7 @@
 		C5B2409B1BDE2B610045C5AE /* UserLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2409A1BDE2B610045C5AE /* UserLocationAnnotation.swift */; settings = {ASSET_TAGS = (); }; };
 		C5B2409D1BDE39D50045C5AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2409C1BDE39D50045C5AE /* CoreLocation.framework */; };
 		C5F1FF8C1BF089EF00C9D3C1 /* PointLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF8B1BF089EF00C9D3C1 /* PointLocationAnnotation.swift */; settings = {ASSET_TAGS = (); }; };
+		C5F1FF8E1BF09CCD00C9D3C1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF8D1BF09CCD00C9D3C1 /* SearchViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		C5B2409A1BDE2B610045C5AE /* UserLocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationAnnotation.swift; sourceTree = "<group>"; };
 		C5B2409C1BDE39D50045C5AE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C5F1FF8B1BF089EF00C9D3C1 /* PointLocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointLocationAnnotation.swift; sourceTree = "<group>"; };
+		C5F1FF8D1BF09CCD00C9D3C1 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			children = (
 				C5B240811BDE13360045C5AE /* MainViewController.swift */,
 				C5B240921BDE154D0045C5AE /* BaseViewController.swift */,
+				C5F1FF8D1BF09CCD00C9D3C1 /* SearchViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5B240821BDE13360045C5AE /* MainViewController.swift in Sources */,
+				C5F1FF8E1BF09CCD00C9D3C1 /* SearchViewController.swift in Sources */,
 				C5B240801BDE13360045C5AE /* AppDelegate.swift in Sources */,
 				C5F1FF8C1BF089EF00C9D3C1 /* PointLocationAnnotation.swift in Sources */,
 				C5B2409B1BDE2B610045C5AE /* UserLocationAnnotation.swift in Sources */,

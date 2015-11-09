@@ -27,9 +27,10 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     
     private var pointList:[PointLocationAnnotation]!
     @IBOutlet weak var pointControlViewLabel: UILabel!
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
         
         locationDelegateImpl = LocationDelegateImpl(delegate: self)
         userLocation = nil
@@ -43,11 +44,6 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         let location2D = CLLocationCoordinate2DMake(locationPointBase.coordinate.latitude, locationPointBase.coordinate.longitude)
         let point = PointLocationAnnotation(coordinate: location2D, title: "MontpellierTest");
         pointList = [point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point]
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         mapView.showsUserLocation = false
         displayListPoint(pointList)
@@ -55,7 +51,7 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         
         //Show research btn
         let searchBtn = UIBarButtonItem(title: "Search", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("searchBtnPressed"))
-        self.navigationItem.leftBarButtonItem = searchBtn
+        self.navigationItem.rightBarButtonItems = [searchBtn]
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -70,10 +66,6 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         };
     }
     
-    func searchBtnPressed() {
-        
-    }
-    
     override func viewWillDisappear(animated: Bool) {
         self.locationManager.stopUpdatingLocation()
     }
@@ -81,6 +73,17 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "searchSegueID" {
+            let vc = segue.destinationViewController as! SearchViewController
+            vc.pointList = pointList;
+        }
+    }
+    
+    func searchBtnPressed() {
+        self.performSegueWithIdentifier("searchSegueID", sender: self)
     }
 
     @IBAction func mapViewClickInside(sender: AnyObject) {
@@ -100,10 +103,9 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
             mapViewBottom.constant = 0
             mapViewBtn.enabled = false
             
-            let backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Done, target: self, action: Selector("backBtnPressed"))
-            self.navigationItem.leftBarButtonItem = backBtn
+            self.displayBackBtn(show: true)
         } else {
-            self.navigationItem.leftBarButtonItem = nil
+            self.displayBackBtn(show: false)
             mapViewBtn.enabled = true
             pointControlView.hidden = true
             
@@ -130,7 +132,7 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         }
     }
     
-    func backBtnPressed() {
+    override func backBtnPressed() {
         displayMapView(full: false)
         displayMapViewPointControle(show: false, title: "")
     }
