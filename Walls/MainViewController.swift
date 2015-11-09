@@ -49,8 +49,8 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         self.automaticallyAdjustsScrollViewInsets = false
         
         //Show research btn
-        let searchBtn = UIBarButtonItem(title: "Search", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("searchBtnPressed"))
-        self.navigationItem.rightBarButtonItems = [searchBtn]
+        let searchItemBtn = self.createItemButtonWithImage("searchBtn", action: Selector("searchBtnPressed"))
+        self.navigationItem.rightBarButtonItems = [searchItemBtn]
         
         tableView.tableFooterView = UIView()
         self.showLoader(show: true)
@@ -205,8 +205,10 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     
     //Table View DELEGATE
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedPoint = pointList[indexPath.row]
-        self.performSegueWithIdentifier("wallSegueID", sender: self)
+        if pointList.count > 0 {
+            selectedPoint = pointList[indexPath.row]
+            self.performSegueWithIdentifier("wallSegueID", sender: self)
+        }
     }
     
     //MK Map View DELEGATE

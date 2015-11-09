@@ -26,7 +26,7 @@ class BaseViewController: UIViewController {
     
     func displayBackBtn(show doShow:Bool) {
         if (doShow) {
-            let backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Done, target: self, action: Selector("backBtnPressed"))
+            let backBtn = self.createItemButtonWithImage("backBtn", action: Selector("backBtnPressed"))
             self.navigationItem.leftBarButtonItem = backBtn
         } else {
             self.navigationItem.leftBarButtonItem = nil
@@ -35,6 +35,16 @@ class BaseViewController: UIViewController {
     
     func backBtnPressed() {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    internal func createItemButtonWithImage(image:String, action aAction:Selector) -> UIBarButtonItem {
+        let image = UIImage(named: image)
+        let frame = CGRect(x: 0, y: 0, width: image!.size.width, height: image!.size.height)
+        let btn = UIButton(frame: frame)
+        btn.addTarget(self, action: aAction, forControlEvents: UIControlEvents.TouchUpInside)
+        btn.setBackgroundImage(image, forState: UIControlState.Normal)
+        btn.showsTouchWhenHighlighted = false
+        return UIBarButtonItem(customView: btn)
     }
     
     func showLoader(show doShow:Bool) {

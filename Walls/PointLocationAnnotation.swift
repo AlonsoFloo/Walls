@@ -42,12 +42,12 @@ public class PointLocationAnnotation : NSObject, MKAnnotation {
     public static func parseFromArray(array aArray:Array<AnyObject>) -> [PointLocationAnnotation] {
         var newPointList:[PointLocationAnnotation] = []
         for value in aArray {
-            let dico = value as! Dictionary<String, String>
+            let dico = value as! Dictionary<String, AnyObject>
             
             let wall = Wall()
-            wall.title = dico["nom"]!
-            wall.latitude = Double(dico["latitude"]!)!
-            wall.longitude = Double(dico["longitude"]!)!
+            wall.title = dico["nom"]! as! String
+            wall.latitude = Double(dico["latitude"]! as! String)!
+            wall.longitude = Double(dico["longitude"]! as! String)!
             let newPoint = PointLocationAnnotation(wall: wall)
             newPointList.append(newPoint)
         }

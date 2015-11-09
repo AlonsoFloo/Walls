@@ -9,7 +9,13 @@
 import UIKit
 import Foundation
 
-class WallViewController: BaseViewController {
+class WallViewController: BaseViewController, RequestDelegate {
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    var messageList:[Message]!
+    
+    var imageWall: UIImage!
+    var imageWallList: [UIImageView]!
     
     internal var wall:Wall!
     
@@ -23,12 +29,15 @@ class WallViewController: BaseViewController {
         
         self.displayBackBtn(show: true)
         
-        let addBtn = UIBarButtonItem(title: "+", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("addBtnPressed"))
+        let addBtn = self.createItemButtonWithImage("addBtn", action: Selector("addBtnPressed"))
         self.navigationItem.rightBarButtonItems = [addBtn]
+        
+        self.showLoader(show: true)
+        
+        messageList = [Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message(), Message()]
     }
     
     override func viewDidAppear(animated: Bool) {
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,6 +54,15 @@ class WallViewController: BaseViewController {
     
     func addBtnPressed() {
         self.performSegueWithIdentifier("addMessageSegueID", sender: self)
+    }
+    
+    //Request Delegate
+    func responseFromWS(array aArray:Array<AnyObject>) {
+        self.showLoader(show: false)
+    }
+    
+    func errorFromWS() {
+        self.showLoader(show: false)
     }
     
 }
