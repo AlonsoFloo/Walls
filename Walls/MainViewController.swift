@@ -160,17 +160,22 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
             return
         }
 
+        var refreshMap = false
         let location2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
         if (userLocation == nil) {
             userLocation = UserLocationAnnotation(coordinate: location2D)
             mapView.addAnnotation(userLocation!)
-            refreshBtnPressed()
+            refreshMap = true
         } else {
             mapView.removeAnnotation(userLocation!)
             mapView.addAnnotation(userLocation!)
         }
         
         mapView.centerCoordinate = location2D
+        
+        if refreshMap {
+            refreshBtnPressed()
+        }
     }
     
     //Table View DATASOURCE
