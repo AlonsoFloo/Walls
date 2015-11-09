@@ -40,10 +40,7 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 50
         
-        let locationPointBase = CLLocation(latitude: 40.7029741,longitude: -74.2598655)
-        let location2D = CLLocationCoordinate2DMake(locationPointBase.coordinate.latitude, locationPointBase.coordinate.longitude)
-        let point = PointLocationAnnotation(coordinate: location2D, title: "MontpellierTest");
-        pointList = [point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point, point]
+        pointList = []
         
         mapView.showsUserLocation = false
         displayListPoint(pointList)
@@ -137,6 +134,9 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         displayMapViewPointControle(show: false, title: "")
     }
     
+    @IBAction func refreshBtnPressed() {
+        
+    }
     
     // LOCATION DELEGATE
     @objc func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -148,6 +148,7 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         if (userLocation == nil) {
             userLocation = UserLocationAnnotation(coordinate: location2D)
             mapView.addAnnotation(userLocation!)
+            refreshBtnPressed()
         } else {
             //userLocation?.coordinate = location2D
             mapView.reloadInputViews()

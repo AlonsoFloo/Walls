@@ -88,12 +88,21 @@
                                     <action selector="mapViewClickInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qnN-rJ-OAz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0d-aS-lJe">
+                                <rect key="frame" x="547" y="64" width="53" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Refresh"/>
+                                <connections>
+                                    <action selector="refreshBtnPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="418-yJ-LHr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7Fz-qx-HRH" firstAttribute="top" secondItem="Hxy-MC-sGo" secondAttribute="bottom" constant="40" id="1M3-kD-wxJ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7Fz-qx-HRH" secondAttribute="bottom" id="399-kn-7zW"/>
+                            <constraint firstItem="X0d-aS-lJe" firstAttribute="trailing" secondItem="Hxy-MC-sGo" secondAttribute="trailing" id="5PZ-gA-JoJ"/>
                             <constraint firstItem="IlR-bL-TP6" firstAttribute="trailing" secondItem="Hxy-MC-sGo" secondAttribute="trailing" id="9NW-qf-Vdy"/>
                             <constraint firstAttribute="trailing" secondItem="Hxy-MC-sGo" secondAttribute="trailing" id="AZO-ZC-3Jg"/>
                             <constraint firstItem="Hxy-MC-sGo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="PJe-Qf-NMd"/>
@@ -107,6 +116,7 @@
                             <constraint firstAttribute="trailing" secondItem="7Fz-qx-HRH" secondAttribute="trailing" id="r9P-yx-9wp"/>
                             <constraint firstItem="IlR-bL-TP6" firstAttribute="leading" secondItem="Hxy-MC-sGo" secondAttribute="leading" id="rPy-i5-Fge"/>
                             <constraint firstItem="Hxy-MC-sGo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="s8J-cT-sQa"/>
+                            <constraint firstItem="X0d-aS-lJe" firstAttribute="top" secondItem="Hxy-MC-sGo" secondAttribute="top" id="vVR-2W-8A3"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
