@@ -8,5 +8,8 @@
 
 import Foundation
 
+
 protocol RequestDelegate {
+    func responseFromWS(array aArray:Array<AnyObject>)
+    func errorFromWS()
 }

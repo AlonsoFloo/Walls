@@ -23,6 +23,11 @@ class SearchViewController: BaseViewController, CLLocationManagerDelegate, UITab
         // Do any additional setup after loading the view, typically from a nib.
         
         self.automaticallyAdjustsScrollViewInsets = false
+        
+        self.navigationItem.title = "Search"
+        
+        tableView.tableFooterView = UIView()
+        
         self.displayBackBtn(show: true)
     }
     

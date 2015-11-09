@@ -10,11 +10,12 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    private var activityIndicatorView:UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.navigationController?.title = "Walls"
         self.navigationItem.title = "Walls"
     }
     
@@ -34,6 +35,24 @@ class BaseViewController: UIViewController {
     
     func backBtnPressed() {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func showLoader(show doShow:Bool) {
+        if activityIndicatorView == nil {
+            activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+            
+            activityIndicatorView.center=self.view.center
+            activityIndicatorView.frame = self.view.frame
+            activityIndicatorView.backgroundColor = UIColor(white: 0.0, alpha: 0.20)
+            activityIndicatorView.hidesWhenStopped = true
+            self.view.addSubview(activityIndicatorView)
+        }
+        
+        if (doShow) {
+            activityIndicatorView.startAnimating();
+        } else {
+            activityIndicatorView.stopAnimating();
+        }
     }
     
 }

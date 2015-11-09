@@ -11,8 +11,9 @@ import MapKit
 
 public class PointLocationAnnotation : NSObject, MKAnnotation {
     
-    private var location:CLLocationCoordinate2D!;
-    private var locationTitle:String!;
+    private var location:CLLocationCoordinate2D!
+    private var locationTitle:String!
+    internal var wall:Wall!
     
     public var title: String? { get {
             return self.locationTitle
@@ -29,6 +30,12 @@ public class PointLocationAnnotation : NSObject, MKAnnotation {
         super.init()
         self.location = aCoordinate
         self.locationTitle = aTitle
+    }
+    
+    init(wall aWall:Wall) {
+        super.init()
+        self.location = CLLocationCoordinate2D(latitude: aWall.latitude, longitude: aWall.longitude)
+        self.locationTitle = aWall.title
     }
     
 }

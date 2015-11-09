@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import Foundation
 
-class MainViewController: BaseViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate {
+class MainViewController: BaseViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, RequestDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
@@ -47,14 +47,15 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         self.automaticallyAdjustsScrollViewInsets = false
         
         //Show research btn
-        let searchBtn = UIBarButtonItem(title: "Search", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("searchBtnPressed"))
+        let searchBtn = UIBarButtonItem(title: "Search", style: UIBarButtonItemStyle.Done, target: self, action: Selector("searchBtnPressed"))
         self.navigationItem.rightBarButtonItems = [searchBtn]
+        
+        tableView.tableFooterView = UIView()
+        self.showLoader(show: true)
     }
     
     override func viewDidAppear(animated: Bool) {
-        if #available(iOS 8.0, *) {
-            self.locationManager.requestWhenInUseAuthorization()
-        }
+        self.locationManager.requestWhenInUseAuthorization()
         
         if #available(iOS 9.0, *) {
             self.locationManager.requestLocation()
@@ -135,7 +136,8 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     }
     
     @IBAction func refreshBtnPressed() {
-        
+        self.showLoader(show: true)
+        WebService.loadPointFromMap(mapView, delegate: self)
     }
     
     // LOCATION DELEGATE
@@ -150,8 +152,8 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
             mapView.addAnnotation(userLocation!)
             refreshBtnPressed()
         } else {
-            //userLocation?.coordinate = location2D
-            mapView.reloadInputViews()
+            mapView.removeAnnotation(userLocation!)
+            mapView.addAnnotation(userLocation!)
         }
         
         mapView.centerCoordinate = location2D
@@ -209,6 +211,32 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     
     func mapView(mapView: MKMapView, didDeSelectAnnotationView view: MKAnnotationView) {
         displayMapViewPointControle(show: false, title: "")
+    }
+    
+    //Request Delegate
+    func responseFromWS(array aArray:Array<AnyObject>) {
+        var newPointList:[PointLocationAnnotation] = []
+        
+        for value in aArray {
+            let dico = value as! Dictionary<String, String>
+            
+            let wall = Wall()
+            wall.title = dico["nom"]!
+            wall.latitude = Double(dico["latitude"]!)!
+            wall.longitude = Double(dico["longitude"]!)!
+            let newPoint = PointLocationAnnotation(wall: wall)
+            newPointList.append(newPoint)
+        }
+        
+        mapView.removeAnnotations(pointList)
+        pointList = newPointList
+        mapView.addAnnotations(pointList)
+        tableView.reloadData()
+        self.showLoader(show: false)
+    }
+    
+    func errorFromWS() {
+        self.showLoader(show: false)
     }
 
 }

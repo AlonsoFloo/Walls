@@ -12,7 +12,7 @@ import Alamofire
 
 public class WebService : NSObject {
     
-    static private let DOMAIN = "http://test.fr"
+    static private let DOMAIN = "http://perso.montpellier.epsi.fr/~nicolas.guigui/wallws"
     
     static internal func loadPointFromMap(map:MKMapView, delegate aDelegate:RequestDelegate) {
         var point = CGPoint(x: 0, y: 0)
@@ -50,7 +50,7 @@ public class WebService : NSObject {
             ]
         ]
         
-        Alamofire.request(.POST, DOMAIN + "/test", parameters: [:], encoding: .Custom({
+        Alamofire.request(.POST, DOMAIN + "/wallsFromCoord", parameters: [:], encoding: .Custom({
             (convertible, params) in
             let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
             do {
@@ -62,7 +62,12 @@ public class WebService : NSObject {
             
             return (mutableRequest, nil)
         })).responseJSON { response in
-            debugPrint(response.result.value)
+            if (response.result.isSuccess) {
+                let test = (response.result.value as! Array<AnyObject>)
+                aDelegate.responseFromWS(array: test)
+            } else {
+                aDelegate.errorFromWS()
+            }
         }
         
         
