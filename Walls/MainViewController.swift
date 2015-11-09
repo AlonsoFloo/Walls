@@ -178,15 +178,28 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     
     //Table View DATASOURCE
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if pointList.count == 0 {
+            return 1;
+        }
         return pointList.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let point = pointList[indexPath.row]
+        var identifier: String = "arroundMe"
+        if pointList.count == 0 {
+            identifier = "noWallsFound"
+        }
         
-        let tableViewCell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "arroundMe")
-        tableViewCell.imageView!.image = UIImage(named: "pointLoc")
-        tableViewCell.textLabel!.text = point.title
+        let tableViewCell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: identifier)
+        
+        if pointList.count == 0 {
+            tableViewCell.textLabel!.text = "No Walls Found"
+        } else {
+            let point = pointList[indexPath.row]
+            tableViewCell.imageView!.image = UIImage(named: "pointLoc")
+            tableViewCell.textLabel!.text = point.title
+        }
+        
         return tableViewCell
     }
     
@@ -232,22 +245,9 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     }
     
     //Request Delegate
-    func responseFromWS(array aArray:Array<AnyObject>) {
-        var newPointList:[PointLocationAnnotation] = []
-        
-        for value in aArray {
-            let dico = value as! Dictionary<String, String>
-            
-            let wall = Wall()
-            wall.title = dico["nom"]!
-            wall.latitude = Double(dico["latitude"]!)!
-            wall.longitude = Double(dico["longitude"]!)!
-            let newPoint = PointLocationAnnotation(wall: wall)
-            newPointList.append(newPoint)
-        }
-        
+    func responseFromWS(array aArray:Array<AnyObject>) {        
         mapView.removeAnnotations(pointList)
-        pointList = newPointList
+        pointList = PointLocationAnnotation.parseFromArray(array: aArray)
         mapView.addAnnotations(pointList)
         tableView.reloadData()
         self.showLoader(show: false)

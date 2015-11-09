@@ -14,6 +14,5 @@ public class Wall : NSObject {
     internal var latitude:Double = 0;
     internal var longitude:Double = 0;
     
-    internal var messages:[Message] = [];
-    
+    internal var messages:[Message] = [];    
 }

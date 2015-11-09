@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class SearchViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, RequestDelegate {
     
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -48,7 +48,9 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func okBoutonClicked() {
+        self.showLoader(show: true)
         let text = searchField.text
+        WebService.searchPoint(text!, delegate: self)
     }
     
     @IBAction func addButtonPressed() {
@@ -96,6 +98,17 @@ class SearchViewController: BaseViewController, UITableViewDelegate, UITableView
             selectedPoint = pointList[indexPath.row]
             self.performSegueWithIdentifier("wallSegueID", sender: self)
         }
+    }
+    
+    //Request Delegate
+    func responseFromWS(array aArray:Array<AnyObject>) {
+        pointList = PointLocationAnnotation.parseFromArray(array: aArray)
+        tableView.reloadData()
+        self.showLoader(show: false)
+    }
+    
+    func errorFromWS() {
+        self.showLoader(show: false)
     }
     
 }

@@ -69,7 +69,31 @@ public class WebService : NSObject {
                 aDelegate.errorFromWS()
             }
         }
+    }
+    
+    static internal func searchPoint(search:String, delegate aDelegate:RequestDelegate) {
+        let bodyDic = [
+            "search" : search
+        ]
         
-        
+        Alamofire.request(.POST, DOMAIN + "/wallsFromCoord", parameters: [:], encoding: .Custom({
+            (convertible, params) in
+            let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
+            do {
+                let jsonData = try NSJSONSerialization.dataWithJSONObject(bodyDic, options: NSJSONWritingOptions.PrettyPrinted)
+                mutableRequest.HTTPBody = jsonData
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            return (mutableRequest, nil)
+        })).responseJSON { response in
+            if (response.result.isSuccess) {
+                let test = (response.result.value as! Array<AnyObject>)
+                aDelegate.responseFromWS(array: test)
+            } else {
+                aDelegate.errorFromWS()
+            }
+        }
     }
 }
