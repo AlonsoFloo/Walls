@@ -21,6 +21,7 @@
 		C5B240981BDE1AB70045C5AE /* LocationDelegateImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B240971BDE1AB70045C5AE /* LocationDelegateImpl.swift */; settings = {ASSET_TAGS = (); }; };
 		C5B2409B1BDE2B610045C5AE /* UserLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2409A1BDE2B610045C5AE /* UserLocationAnnotation.swift */; settings = {ASSET_TAGS = (); }; };
 		C5B2409D1BDE39D50045C5AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2409C1BDE39D50045C5AE /* CoreLocation.framework */; };
+		C5BB61C31C158D410095BB05 /* UIDistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BB61C21C158D410095BB05 /* UIDistantView.swift */; settings = {ASSET_TAGS = (); }; };
 		C5F1FF8C1BF089EF00C9D3C1 /* PointLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF8B1BF089EF00C9D3C1 /* PointLocationAnnotation.swift */; settings = {ASSET_TAGS = (); }; };
 		C5F1FF8E1BF09CCD00C9D3C1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF8D1BF09CCD00C9D3C1 /* SearchViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		C5F1FF911BF0B0F500C9D3C1 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF901BF0B0F500C9D3C1 /* Wall.swift */; settings = {ASSET_TAGS = (); }; };
@@ -48,6 +49,7 @@
 		C5B240971BDE1AB70045C5AE /* LocationDelegateImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDelegateImpl.swift; sourceTree = "<group>"; };
 		C5B2409A1BDE2B610045C5AE /* UserLocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationAnnotation.swift; sourceTree = "<group>"; };
 		C5B2409C1BDE39D50045C5AE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C5BB61C21C158D410095BB05 /* UIDistantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDistantView.swift; sourceTree = "<group>"; };
 		C5F1FF8B1BF089EF00C9D3C1 /* PointLocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointLocationAnnotation.swift; sourceTree = "<group>"; };
 		C5F1FF8D1BF09CCD00C9D3C1 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C5F1FF901BF0B0F500C9D3C1 /* Wall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		C5B2407E1BDE13360045C5AE /* Walls */ = {
 			isa = PBXGroup;
 			children = (
+				C5BB61C11C158D130095BB05 /* View */,
 				C5F1FF941BF0B2FC00C9D3C1 /* Protocol */,
 				C5F1FF8F1BF0B0DD00C9D3C1 /* Models */,
 				C5B240991BDE2B4F0045C5AE /* Pin */,
@@ -152,6 +155,14 @@
 				C5F1FF8B1BF089EF00C9D3C1 /* PointLocationAnnotation.swift */,
 			);
 			name = Pin;
+			sourceTree = "<group>";
+		};
+		C5BB61C11C158D130095BB05 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C5BB61C21C158D410095BB05 /* UIDistantView.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		C5F1FF8F1BF0B0DD00C9D3C1 /* Models */ = {
@@ -300,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5F1FF981BF0B43600C9D3C1 /* WebService.swift in Sources */,
+				C5BB61C31C158D410095BB05 /* UIDistantView.swift in Sources */,
 				C5B240821BDE13360045C5AE /* MainViewController.swift in Sources */,
 				C5F1FF8E1BF09CCD00C9D3C1 /* SearchViewController.swift in Sources */,
 				C5B240801BDE13360045C5AE /* AppDelegate.swift in Sources */,

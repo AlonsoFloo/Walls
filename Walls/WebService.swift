@@ -96,4 +96,15 @@ public class WebService : NSObject {
             }
         }
     }
+    
+    static internal func loadMessage(forWall wall:Int, at page:Int, withDelegate aDelegate:RequestDelegate) {
+        Alamofire.request(.POST, DOMAIN + "/messages/\(wall)/\(page)", parameters: [:]).responseJSON { response in
+            if (response.result.isSuccess) {
+                let test = (response.result.value as! Array<AnyObject>)
+                aDelegate.responseFromWS(array: test)
+            } else {
+                aDelegate.errorFromWS()
+            }
+        }
+    }
 }

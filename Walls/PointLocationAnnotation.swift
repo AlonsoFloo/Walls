@@ -45,6 +45,7 @@ public class PointLocationAnnotation : NSObject, MKAnnotation {
             let dico = value as! Dictionary<String, AnyObject>
             
             let wall = Wall()
+            wall.id = Int(dico["id"]! as! String)!
             wall.title = dico["nom"]! as! String
             wall.latitude = Double(dico["latitude"]! as! String)!
             wall.longitude = Double(dico["longitude"]! as! String)!

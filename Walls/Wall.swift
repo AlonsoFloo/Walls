@@ -10,6 +10,7 @@ import Foundation
 
 public class Wall : NSObject {
     
+    internal var id:Int = -1;
     internal var title:String = "";
     internal var latitude:Double = 0;
     internal var longitude:Double = 0;
