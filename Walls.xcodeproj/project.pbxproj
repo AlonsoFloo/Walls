@@ -8,26 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		40A2F92882E2B49C87AF44FD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ED5AA76DA1826C958F7827 /* Pods.framework */; };
-		C58BA7441BF0DEA4004F0CCA /* WallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BA7431BF0DEA4004F0CCA /* WallViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		C58BA7461BF0EA64004F0CCA /* AddWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BA7451BF0EA64004F0CCA /* AddWallViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		C58BA7481BF0EBD9004F0CCA /* AddMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BA7471BF0EBD9004F0CCA /* AddMessageViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		C58BA7441BF0DEA4004F0CCA /* WallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BA7431BF0DEA4004F0CCA /* WallViewController.swift */; };
+		C58BA7461BF0EA64004F0CCA /* AddWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BA7451BF0EA64004F0CCA /* AddWallViewController.swift */; };
+		C58BA7481BF0EBD9004F0CCA /* AddMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BA7471BF0EBD9004F0CCA /* AddMessageViewController.swift */; };
 		C5B240801BDE13360045C5AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2407F1BDE13360045C5AE /* AppDelegate.swift */; };
 		C5B240821BDE13360045C5AE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B240811BDE13360045C5AE /* MainViewController.swift */; };
 		C5B240851BDE13360045C5AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5B240831BDE13360045C5AE /* Main.storyboard */; };
 		C5B240871BDE13360045C5AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5B240861BDE13360045C5AE /* Assets.xcassets */; };
 		C5B2408A1BDE13360045C5AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5B240881BDE13360045C5AE /* LaunchScreen.storyboard */; };
-		C5B240931BDE154D0045C5AE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B240921BDE154D0045C5AE /* BaseViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		C5B240931BDE154D0045C5AE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B240921BDE154D0045C5AE /* BaseViewController.swift */; };
 		C5B240951BDE15E10045C5AE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B240941BDE15E10045C5AE /* MapKit.framework */; };
-		C5B240981BDE1AB70045C5AE /* LocationDelegateImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B240971BDE1AB70045C5AE /* LocationDelegateImpl.swift */; settings = {ASSET_TAGS = (); }; };
-		C5B2409B1BDE2B610045C5AE /* UserLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2409A1BDE2B610045C5AE /* UserLocationAnnotation.swift */; settings = {ASSET_TAGS = (); }; };
+		C5B240981BDE1AB70045C5AE /* LocationDelegateImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B240971BDE1AB70045C5AE /* LocationDelegateImpl.swift */; };
+		C5B2409B1BDE2B610045C5AE /* UserLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2409A1BDE2B610045C5AE /* UserLocationAnnotation.swift */; };
 		C5B2409D1BDE39D50045C5AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B2409C1BDE39D50045C5AE /* CoreLocation.framework */; };
-		C5BB61C31C158D410095BB05 /* UIDistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BB61C21C158D410095BB05 /* UIDistantView.swift */; settings = {ASSET_TAGS = (); }; };
-		C5F1FF8C1BF089EF00C9D3C1 /* PointLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF8B1BF089EF00C9D3C1 /* PointLocationAnnotation.swift */; settings = {ASSET_TAGS = (); }; };
-		C5F1FF8E1BF09CCD00C9D3C1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF8D1BF09CCD00C9D3C1 /* SearchViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		C5F1FF911BF0B0F500C9D3C1 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF901BF0B0F500C9D3C1 /* Wall.swift */; settings = {ASSET_TAGS = (); }; };
-		C5F1FF931BF0B19C00C9D3C1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF921BF0B19C00C9D3C1 /* Message.swift */; settings = {ASSET_TAGS = (); }; };
-		C5F1FF961BF0B30C00C9D3C1 /* RequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF951BF0B30C00C9D3C1 /* RequestDelegate.swift */; settings = {ASSET_TAGS = (); }; };
-		C5F1FF981BF0B43600C9D3C1 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF971BF0B43600C9D3C1 /* WebService.swift */; settings = {ASSET_TAGS = (); }; };
+		C5BB61C31C158D410095BB05 /* UIDistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BB61C21C158D410095BB05 /* UIDistantView.swift */; };
+		C5CCECC11C3A7D5D00102928 /* FavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCECC01C3A7D5D00102928 /* FavViewController.swift */; };
+		C5CCECC31C3A7EC000102928 /* DataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CCECC21C3A7EC000102928 /* DataHolder.swift */; };
+		C5F1FF8C1BF089EF00C9D3C1 /* PointLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF8B1BF089EF00C9D3C1 /* PointLocationAnnotation.swift */; };
+		C5F1FF8E1BF09CCD00C9D3C1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF8D1BF09CCD00C9D3C1 /* SearchViewController.swift */; };
+		C5F1FF911BF0B0F500C9D3C1 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF901BF0B0F500C9D3C1 /* Wall.swift */; };
+		C5F1FF931BF0B19C00C9D3C1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF921BF0B19C00C9D3C1 /* Message.swift */; };
+		C5F1FF961BF0B30C00C9D3C1 /* RequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF951BF0B30C00C9D3C1 /* RequestDelegate.swift */; };
+		C5F1FF981BF0B43600C9D3C1 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F1FF971BF0B43600C9D3C1 /* WebService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		C5B2409A1BDE2B610045C5AE /* UserLocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationAnnotation.swift; sourceTree = "<group>"; };
 		C5B2409C1BDE39D50045C5AE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C5BB61C21C158D410095BB05 /* UIDistantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDistantView.swift; sourceTree = "<group>"; };
+		C5CCECC01C3A7D5D00102928 /* FavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavViewController.swift; sourceTree = "<group>"; };
+		C5CCECC21C3A7EC000102928 /* DataHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHolder.swift; sourceTree = "<group>"; };
 		C5F1FF8B1BF089EF00C9D3C1 /* PointLocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointLocationAnnotation.swift; sourceTree = "<group>"; };
 		C5F1FF8D1BF09CCD00C9D3C1 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C5F1FF901BF0B0F500C9D3C1 /* Wall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				C58BA7431BF0DEA4004F0CCA /* WallViewController.swift */,
 				C58BA7451BF0EA64004F0CCA /* AddWallViewController.swift */,
 				C58BA7471BF0EBD9004F0CCA /* AddMessageViewController.swift */,
+				C5CCECC01C3A7D5D00102928 /* FavViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 				C5F1FF901BF0B0F500C9D3C1 /* Wall.swift */,
 				C5F1FF921BF0B19C00C9D3C1 /* Message.swift */,
 				C5F1FF971BF0B43600C9D3C1 /* WebService.swift */,
+				C5CCECC21C3A7EC000102928 /* DataHolder.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -324,6 +330,8 @@
 				C58BA7481BF0EBD9004F0CCA /* AddMessageViewController.swift in Sources */,
 				C5B240931BDE154D0045C5AE /* BaseViewController.swift in Sources */,
 				C5F1FF961BF0B30C00C9D3C1 /* RequestDelegate.swift in Sources */,
+				C5CCECC31C3A7EC000102928 /* DataHolder.swift in Sources */,
+				C5CCECC11C3A7D5D00102928 /* FavViewController.swift in Sources */,
 				C5B240981BDE1AB70045C5AE /* LocationDelegateImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

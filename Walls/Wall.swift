@@ -15,5 +15,23 @@ public class Wall : NSObject {
     internal var latitude:Double = 0;
     internal var longitude:Double = 0;
     
-    internal var messages:[Message] = [];    
+    internal var messages:[Message] = [];
+    
+    internal func convertToDict() -> Dictionary<String, AnyObject> {
+        var dic = Dictionary<String, AnyObject>()
+        
+        dic["id"] = id;
+        dic["title"] = title;
+        
+        return dic
+    }
+    
+    internal static func convertFromDict(dict:Dictionary<String, AnyObject>) -> Wall {
+        let wall = Wall()
+        
+        wall.id = dict["id"] as! Int
+        wall.title = dict["title"] as! String
+        
+        return wall
+    }
 }

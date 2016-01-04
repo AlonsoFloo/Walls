@@ -11,14 +11,17 @@ import MapKit
 
 public class Message : NSObject {
     
-    internal var like:Int = 0;
-    internal var alert:Int = 0;
-    internal var content:String = "";
-    internal var isImage:Bool = false;
-    internal var size:Int = 0;
-    internal var fontSize:CGFloat = 0;
-    internal var location:CLLocationCoordinate2D!;
-    internal var rect:CGRect!;
+    internal static let MAXWIDTH = 230
+    internal static let MINWIDTH = 60
+    
+    internal var like:Int = 0
+    internal var alert:Int = 0
+    internal var content:String = ""
+    internal var isImage:Bool = false
+    internal var size:Int = 0
+    internal var fontSize:CGFloat = 0
+    internal var location:CLLocationCoordinate2D!
+    internal var rect:CGRect!
     
     
     public static func parseFromArray(array aArray:Array<AnyObject>) -> [Message] {
@@ -38,12 +41,13 @@ public class Message : NSObject {
             
             // calculate the size
             mess.size = mess.like * 3 - mess.alert * 2;
-            if (mess.size > 150) {
-                mess.size = 150
-            } else if (mess.size == 0) {
-                mess.size = 80;
+            if (mess.size > MAXWIDTH) {
+                mess.size = MAXWIDTH
+            } else if (mess.size < MINWIDTH) {
+                mess.size = MINWIDTH;
             }
-            mess.fontSize = 14.0
+            
+            mess.fontSize = CGFloat((mess.size * 100)/MAXWIDTH) / 2;
             
             newPointList.append(mess);
         }

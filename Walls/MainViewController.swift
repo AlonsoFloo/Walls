@@ -50,7 +50,8 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         
         //Show research btn
         let searchItemBtn = self.createItemButtonWithImage("searchBtn", action: Selector("searchBtnPressed"))
-        self.navigationItem.rightBarButtonItems = [searchItemBtn]
+        let favBtn = self.createItemButtonWithImage("favBtn", action: Selector("favBtnPressed"))
+        self.navigationItem.rightBarButtonItems = [searchItemBtn, favBtn]
         
         tableView.tableFooterView = UIView()
         self.showLoader(show: true)
@@ -89,6 +90,10 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
     
     func searchBtnPressed() {
         self.performSegueWithIdentifier("searchSegueID", sender: self)
+    }
+    
+    func favBtnPressed() {
+        self.performSegueWithIdentifier("favSegueID", sender: self)
     }
 
     @IBAction func mapViewClickInside(sender: AnyObject) {

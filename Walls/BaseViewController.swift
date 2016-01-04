@@ -48,11 +48,22 @@ class BaseViewController: UIViewController {
     }
     
     func showLoader(show doShow:Bool) {
+        self.showLoader(show: doShow, full: true)
+    }
+    
+    func showLoader(show doShow:Bool, full showFull:Bool) {
         if activityIndicatorView == nil {
             activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
             
             activityIndicatorView.center=self.view.center
-            activityIndicatorView.frame = self.view.frame
+            
+            if (showFull) {
+                activityIndicatorView.frame = self.view.frame
+            } else {
+                let size = CGSize(width: self.view.frame.size.width, height: 60)
+                let point = CGPoint(x: 0, y: 64)
+                activityIndicatorView.frame = CGRect(origin: point, size: size)
+            }
             activityIndicatorView.backgroundColor = UIColor(white: 0.0, alpha: 0.20)
             activityIndicatorView.hidesWhenStopped = true
             self.view.addSubview(activityIndicatorView)

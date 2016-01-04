@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AjY-zi-dzo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AjY-zi-dzo">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -160,6 +160,7 @@
                                 <animations/>
                                 <connections>
                                     <action selector="mapViewClickInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qnN-rJ-OAz"/>
+                                    <segue destination="F7T-nO-AVm" kind="show" identifier="favSegueID" id="Xcr-NG-Zcv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0d-aS-lJe">
@@ -359,6 +360,55 @@
             </objects>
             <point key="canvasLocation" x="1750" y="-475"/>
         </scene>
+        <!--Fav View Controller-->
+        <scene sceneID="BAV-so-3Bx">
+            <objects>
+                <viewController id="F7T-nO-AVm" customClass="FavViewController" customModule="Walls" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nhh-se-2fC"/>
+                        <viewControllerLayoutGuide type="bottom" id="G3r-fi-O3N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZFt-Cl-8MU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e1a-5y-w7f">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="F7T-nO-AVm" id="ZRl-WA-dZ6"/>
+                                    <outlet property="delegate" destination="F7T-nO-AVm" id="S9Q-vM-Q3W"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="e1a-5y-w7f" firstAttribute="leading" secondItem="ZFt-Cl-8MU" secondAttribute="leading" id="B8r-QP-Yo8"/>
+                            <constraint firstItem="e1a-5y-w7f" firstAttribute="top" secondItem="Nhh-se-2fC" secondAttribute="bottom" id="EUm-S3-1JX"/>
+                            <constraint firstItem="G3r-fi-O3N" firstAttribute="top" secondItem="e1a-5y-w7f" secondAttribute="bottom" id="OiP-7P-Z8q"/>
+                            <constraint firstAttribute="trailing" secondItem="e1a-5y-w7f" secondAttribute="trailing" id="WAM-AL-LM2"/>
+                            <constraint firstItem="G3r-fi-O3N" firstAttribute="top" secondItem="e1a-5y-w7f" secondAttribute="bottom" id="hFl-l2-bE2"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="OiP-7P-Z8q"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="kMD-xc-oIW"/>
+                    <connections>
+                        <outlet property="tableView" destination="e1a-5y-w7f" id="vTY-sA-xuB"/>
+                        <segue destination="z8m-XC-zI7" kind="show" identifier="wallSegueID" id="mIh-td-CqT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YUe-fi-5jI" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="765" y="-1378"/>
+        </scene>
     </scenes>
     <resources>
         <image name="addBtn" width="34" height="34"/>
@@ -367,6 +417,6 @@
         <image name="refresh" width="34" height="34"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HCC-Wd-Ut2"/>
+        <segue reference="mIh-td-CqT"/>
     </inferredMetricsTieBreakers>
 </document>
