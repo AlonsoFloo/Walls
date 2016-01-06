@@ -31,7 +31,7 @@ class DataHolder: NSObject {
         for wall in favList {
             favArray.append(wall.convertToDict())
         }
-        userDefault.setObject(favArray, forKey: "favList")
+        userDefault.setObject(favArray, forKey: "sync_favList")
         
         userDefault.synchronize()
     }
@@ -39,7 +39,7 @@ class DataHolder: NSObject {
     internal func loadData() -> Void {
         let userDefault = NSUserDefaults()
         
-        if let currentFavList = userDefault.objectForKey("favList") {
+        if let currentFavList = userDefault.objectForKey("sync_favList") {
             let favArray = currentFavList as! [Dictionary<String, AnyObject>]
             for wallDict in favArray {
                 favList.append(Wall.convertFromDict(wallDict))
