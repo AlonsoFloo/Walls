@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MKiCloudSync
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let URLCache = NSURLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
         NSURLCache.setSharedURLCache(URLCache)
+        
+        MKiCloudSync.startWithPrefix("sync")
         
         return true
     }
