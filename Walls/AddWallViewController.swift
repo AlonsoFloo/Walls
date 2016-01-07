@@ -139,7 +139,8 @@ class AddWallViewController: BaseViewController, CLLocationManagerDelegate, MKMa
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "wallSegueID" {
             let vc = segue.destinationViewController as! WallViewController
-            vc.wall = newWall;
+            vc.wall = newWall
+            vc.backToRoot = true
         }
     }
     
