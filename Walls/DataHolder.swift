@@ -24,25 +24,29 @@ class DataHolder: NSObject {
         return DataHolder._instance;
     }
     
+    internal func start() -> Void {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUserDefaultsFromiCloud:", name: NSUbiquitousKeyValueStoreDidChangeExternallyNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateiCloudFromUserDefaults:", name: NSUserDefaultsDidChangeNotification, object: nil)
+        
+        self.loadData()
+    }
+    
     internal func saveData() -> Void {
-        let userDefault = NSUserDefaults()
+        let userDefault = NSUserDefaults.standardUserDefaults()
         
         var favArray:[Dictionary<String, AnyObject>] = []
         for wall in favList {
             favArray.append(wall.convertToDict())
         }
-        userDefault.setObject(favArray, forKey: "sync_favList")
+        userDefault.setObject(favArray, forKey: "favList")
         
         userDefault.synchronize()
     }
     
-    internal func loadData() -> Void {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUserDefaultsFromiCloud:", name: NSUbiquitousKeyValueStoreDidChangeExternallyNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateiCloudFromUserDefaults:", name: NSUserDefaultsDidChangeNotification, object: nil)
+    private func loadData() -> Void {
+        let userDefault = NSUserDefaults.standardUserDefaults()
         
-        let userDefault = NSUserDefaults()
-        
-        if let currentFavList = userDefault.objectForKey("sync_favList") {
+        if let currentFavList = userDefault.objectForKey("favList") {
             let favArray = currentFavList as! [Dictionary<String, AnyObject>]
             for wallDict in favArray {
                 favList.append(Wall.convertFromDict(wallDict))
@@ -50,7 +54,7 @@ class DataHolder: NSObject {
         }
     }
     
-    class func updateUserDefaultsFromiCloud(notification:NSNotification?) {
+    dynamic private func updateUserDefaultsFromiCloud(notification:NSNotification?) {
         
         //prevent loop of notifications by removing our observer before we update NSUserDefaults
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil);
@@ -64,13 +68,14 @@ class DataHolder: NSObject {
                 
         userDefaults.synchronize()
         
+        self.loadData()
+        
         // re-enable NSUserDefaultsDidChangeNotification notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateiCloudFromUserDefaults:", name: NSUserDefaultsDidChangeNotification, object: nil)
     }
 
     
-    class func updateiCloudFromUserDefaults(notification:NSNotification?) {
-        
+    dynamic private func updateiCloudFromUserDefaults(notification:NSNotification?) {
         let defaultsDictionary = NSUserDefaults.standardUserDefaults().dictionaryRepresentation()
         let cloudStore         = NSUbiquitousKeyValueStore.defaultStore()
         

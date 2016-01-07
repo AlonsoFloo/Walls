@@ -52,6 +52,7 @@
 		C5B2409A1BDE2B610045C5AE /* UserLocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationAnnotation.swift; sourceTree = "<group>"; };
 		C5B2409C1BDE39D50045C5AE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C5BB61C21C158D410095BB05 /* UIDistantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDistantView.swift; sourceTree = "<group>"; };
+		C5C507071C3E59D900AB874F /* Walls.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Walls.entitlements; sourceTree = "<group>"; };
 		C5CCECC01C3A7D5D00102928 /* FavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavViewController.swift; sourceTree = "<group>"; };
 		C5CCECC21C3A7EC000102928 /* DataHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHolder.swift; sourceTree = "<group>"; };
 		C5F1FF8B1BF089EF00C9D3C1 /* PointLocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointLocationAnnotation.swift; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 		C5B2407E1BDE13360045C5AE /* Walls */ = {
 			isa = PBXGroup;
 			children = (
+				C5C507071C3E59D900AB874F /* Walls.entitlements */,
 				C5BB61C11C158D130095BB05 /* View */,
 				C5F1FF941BF0B2FC00C9D3C1 /* Protocol */,
 				C5F1FF8F1BF0B0DD00C9D3C1 /* Models */,
@@ -226,6 +228,9 @@
 						DevelopmentTeam = W6LNED9894;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -446,12 +451,15 @@
 			baseConfigurationReference = 14D4AFB78A4FD63081424429 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Walls/Walls.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Walls/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.epsi.mobile.Walls;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -460,12 +468,15 @@
 			baseConfigurationReference = 51C2B73E7052A27394001E5F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Walls/Walls.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Walls/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.epsi.mobile.Walls;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
