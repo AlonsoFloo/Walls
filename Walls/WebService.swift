@@ -73,10 +73,10 @@ public class WebService : NSObject {
     
     static internal func searchPoint(search:String, delegate aDelegate:RequestDelegate) {
         let bodyDic = [
-            "search" : search
+            "research" : search
         ]
         
-        Alamofire.request(.POST, DOMAIN + "/wallsFromCoord", parameters: [:], encoding: .Custom({
+        Alamofire.request(.POST, DOMAIN + "/research", parameters: [:], encoding: .Custom({
             (convertible, params) in
             let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
             do {
@@ -99,6 +99,38 @@ public class WebService : NSObject {
     
     static internal func loadMessage(forWall wall:Int, at page:Int, withDelegate aDelegate:RequestDelegate) {
         Alamofire.request(.POST, DOMAIN + "/messages/\(wall)/\(page)", parameters: [:]).responseJSON { response in
+            if (response.result.isSuccess) {
+                let test = (response.result.value as! Array<AnyObject>)
+                aDelegate.responseFromWS(array: test)
+            } else {
+                aDelegate.errorFromWS()
+            }
+        }
+    }
+    
+    
+    static internal func addWall(wall:Wall, delegate aDelegate:RequestDelegate) {
+        let bodyDic = [
+            "nom" : wall.title,
+            "latitude" : wall.latitude,
+            "longitude" : wall.longitude,
+            "distance" : wall.lenght,
+            "created" : NSDate().timeIntervalSince1970,
+            "description" : ""
+        ]
+        
+        Alamofire.request(.POST, DOMAIN + "/insertWall", parameters: [:], encoding: .Custom({
+            (convertible, params) in
+            let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
+            do {
+                let jsonData = try NSJSONSerialization.dataWithJSONObject(bodyDic, options: NSJSONWritingOptions.PrettyPrinted)
+                mutableRequest.HTTPBody = jsonData
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            return (mutableRequest, nil)
+        })).responseJSON { response in
             if (response.result.isSuccess) {
                 let test = (response.result.value as! Array<AnyObject>)
                 aDelegate.responseFromWS(array: test)

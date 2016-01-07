@@ -76,6 +76,11 @@ class DataHolder: NSObject {
 
     
     dynamic private func updateiCloudFromUserDefaults(notification:NSNotification?) {
+        //prevent loop of notifications by removing our observer before we update NSUserDefaults
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil);
+        
+        self.saveData()
+        
         let defaultsDictionary = NSUserDefaults.standardUserDefaults().dictionaryRepresentation()
         let cloudStore         = NSUbiquitousKeyValueStore.defaultStore()
         
@@ -85,6 +90,8 @@ class DataHolder: NSObject {
         
         // let iCloud know that new or updated keys, values are ready to be uploaded
         cloudStore.synchronize()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateiCloudFromUserDefaults:", name: NSUserDefaultsDidChangeNotification, object: nil)
     }
 
     

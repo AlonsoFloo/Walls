@@ -99,6 +99,11 @@ class WallViewController: BaseViewController, RequestDelegate, UIScrollViewDeleg
     func responseFromWS(array aArray:Array<AnyObject>) {
         if (aArray.count == 0) {
             bloqued = true;
+            dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                if let goSelf = self {
+                    goSelf.showLoader(show: false)
+                }
+            }
         } else {
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
                 self.messageList = Message.parseFromArray(array: aArray)

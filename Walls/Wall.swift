@@ -14,6 +14,7 @@ public class Wall : NSObject {
     internal var title:String = "";
     internal var latitude:Double = 0;
     internal var longitude:Double = 0;
+    internal var lenght:Double = 0;
     
     internal var messages:[Message] = [];
     
@@ -32,6 +33,15 @@ public class Wall : NSObject {
         wall.id = dict["id"] as! Int
         wall.title = dict["title"] as! String
         
+        return wall
+    }
+    
+    public static func parseFromDict(dico aDico:Dictionary<String, AnyObject>) -> Wall {
+        let wall = Wall()
+        wall.id = Int(aDico["id"]! as! String)!
+        wall.title = aDico["nom"]! as! String
+        wall.latitude = Double(aDico["latitude"]! as! String)!
+        wall.longitude = Double(aDico["longitude"]! as! String)!
         return wall
     }
 }
