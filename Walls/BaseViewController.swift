@@ -11,6 +11,7 @@ import UIKit
 class BaseViewController: UIViewController {
     
     private var activityIndicatorView:UIActivityIndicatorView!
+    internal var backToRoot:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,11 @@ class BaseViewController: UIViewController {
     }
     
     func backBtnPressed() {
-        self.navigationController?.popViewControllerAnimated(true)
+        if (backToRoot) {
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        } else {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     internal func createItemButtonWithImage(image:String, action aAction:Selector) -> UIBarButtonItem {
