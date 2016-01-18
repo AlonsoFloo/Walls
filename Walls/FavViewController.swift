@@ -22,6 +22,8 @@ class FavViewController: BaseViewController, UITableViewDelegate, UITableViewDat
         self.automaticallyAdjustsScrollViewInsets = false
         self.navigationItem.title = "Bookmarks"
         
+        self.displayBackBtn(show: true)
+        
         tableView.tableFooterView = UIView()
     }
     
