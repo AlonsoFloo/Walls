@@ -15,16 +15,16 @@ public class WebService : NSObject {
     static private let DOMAIN = "http://perso.montpellier.epsi.fr/~nicolas.guigui/wallws"
     
     static internal func loadPointFromMap(map:MKMapView, delegate aDelegate:RequestDelegate) {
-        var point = CGPoint(x: 0, y: 0)
+        var point = CGPointMake((map.bounds.origin.x), (map.bounds.origin.y))
         let leftTop:CLLocationCoordinate2D = map.convertPoint(point, toCoordinateFromView:map)
         
-        point = CGPoint(x: 0, y: map.bounds.width)
+        point = CGPointMake(map.bounds.origin.x + map.bounds.size.width, map.bounds.origin.y)
         let rightTop:CLLocationCoordinate2D = map.convertPoint(point, toCoordinateFromView: map)
         
-        point = CGPoint(x: map.bounds.height, y: 0)
+        point = CGPointMake((map.bounds.origin.x), (map.bounds.origin.y + map.bounds.size.height))
         let leftBottom:CLLocationCoordinate2D = map.convertPoint(point, toCoordinateFromView: map)
         
-        point = CGPoint(x: map.bounds.height, y: map.bounds.width)
+        point = CGPointMake((map.bounds.origin.x + map.bounds.size.width), (map.bounds.origin.y + map.bounds.size.height))
         let rightBottom:CLLocationCoordinate2D = map.convertPoint(point, toCoordinateFromView: map)
         
         let bodyDic = [

@@ -238,10 +238,7 @@ class WallViewController: BaseViewController, RequestDelegate, UIScrollViewDeleg
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        print(scrollView.contentOffset.x)
-        print(scrollView.contentSize.width)
-        if (scrollView.contentOffset.x == 0 && curentMaxIndex == 0
-            || true) {
+        if (scrollView.contentOffset.x == (scrollView.contentSize.width - scrollView.frame.width)) {
             self.loadMoreScrollViewContent()
         }
     }
