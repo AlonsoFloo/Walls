@@ -161,7 +161,6 @@
                                 <animations/>
                                 <connections>
                                     <action selector="mapViewClickInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qnN-rJ-OAz"/>
-                                    <segue destination="F7T-nO-AVm" kind="show" identifier="favSegueID" id="Xcr-NG-Zcv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0d-aS-lJe">
@@ -211,6 +210,7 @@
                         <outlet property="tableView" destination="7Fz-qx-HRH" id="GNt-ai-LSh"/>
                         <segue destination="w87-MB-VAG" kind="show" identifier="searchSegueID" id="Rnq-no-fBY"/>
                         <segue destination="z8m-XC-zI7" kind="show" identifier="wallSegueID" id="HCC-Wd-Ut2"/>
+                        <segue destination="F7T-nO-AVm" kind="show" identifier="favSegueID" id="B9b-Pk-aCU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -239,7 +239,7 @@
                                 <rect key="frame" x="25" y="84" width="550" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="W9R-eu-cLa">
@@ -248,9 +248,19 @@
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hm6-wZ-Zlg">
                                 <rect key="frame" x="20" y="77" width="550" height="550"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="createNewWall" translatesAutoresizingMaskIntoConstraints="NO" id="UYU-XX-6B7">
+                                        <rect key="frame" x="0.0" y="0.0" width="550" height="550"/>
+                                        <animations/>
+                                    </imageView>
+                                </subviews>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hm6-wZ-Zlg" secondAttribute="height" multiplier="1:1" id="aDo-kU-bbB"/>
+                                    <constraint firstItem="UYU-XX-6B7" firstAttribute="leading" secondItem="hm6-wZ-Zlg" secondAttribute="leading" id="brX-kX-zQg"/>
+                                    <constraint firstAttribute="trailing" secondItem="UYU-XX-6B7" secondAttribute="trailing" id="qYQ-8a-f3f"/>
+                                    <constraint firstAttribute="bottom" secondItem="UYU-XX-6B7" secondAttribute="bottom" id="rrI-54-ItY"/>
+                                    <constraint firstItem="UYU-XX-6B7" firstAttribute="top" secondItem="hm6-wZ-Zlg" secondAttribute="top" id="wR4-1D-Tpc"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGP-px-TIy">
@@ -490,10 +500,11 @@
     <resources>
         <image name="addBtn" width="34" height="34"/>
         <image name="blueDot" width="32" height="32"/>
+        <image name="createNewWall" width="121" height="121"/>
         <image name="pointLoc" width="15" height="15"/>
         <image name="refresh" width="34" height="34"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="A42-FC-1gB"/>
+        <segue reference="HCC-Wd-Ut2"/>
     </inferredMetricsTieBreakers>
 </document>

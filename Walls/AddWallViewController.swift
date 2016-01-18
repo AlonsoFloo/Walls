@@ -44,7 +44,6 @@ class AddWallViewController: BaseViewController, CLLocationManagerDelegate, MKMa
         mapView.addGestureRecognizer(doubleTap)
         
         self.circleView.userInteractionEnabled = false
-        self.circleView.backgroundColor = UIColor.redColor();
         
         self.automaticallyAdjustsScrollViewInsets = true
         self.navigationItem.title = "New Wall"

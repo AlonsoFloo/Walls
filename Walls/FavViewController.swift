@@ -20,6 +20,7 @@ class FavViewController: BaseViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.automaticallyAdjustsScrollViewInsets = false
+        self.navigationItem.title = "Bookmarks"
         
         tableView.tableFooterView = UIView()
     }
