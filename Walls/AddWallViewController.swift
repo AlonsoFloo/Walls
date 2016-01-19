@@ -100,7 +100,7 @@ class AddWallViewController: BaseViewController, CLLocationManagerDelegate, MKMa
         let leftCoordinate = mapView.convertPoint(leftPoint, toCoordinateFromView: mapView)
         let leftCoordinateNot2D = CLLocation(latitude: leftCoordinate.latitude, longitude: leftCoordinate.longitude)
         let distance = currentCoordinateNot2D.distanceFromLocation(leftCoordinateNot2D)
-        wall.lenght = distance
+        wall.lenght = distance / 2;
         
         WebService.addWall(wall, delegate: self)
     }

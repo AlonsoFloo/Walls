@@ -216,6 +216,8 @@ class WallViewController: BaseViewController, RequestDelegate, UIScrollViewDeleg
                         labelView.numberOfLines = -1
                         view = labelView
                     }
+                    
+                    
                     goSelf.scrollView.addSubview(view)
                     goSelf.scrollView.bringSubviewToFront(view)
                 }
