@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 public class Wall : NSObject {
     
@@ -36,12 +37,22 @@ public class Wall : NSObject {
         return wall
     }
     
+    internal func coordinateInWall(coord:CLLocationCoordinate2D) -> Bool {
+        let dlon = coord.longitude - longitude
+        let dlat = coord.latitude - latitude
+        let a = (pow(sin(dlat/2), 2) + cos(latitude) * cos(coord.latitude) * pow(sin(dlon/2), 2))
+        let c = 2 * atan2(sqrt(a), sqrt(1-a))
+        let distance = 6373000 * c
+        return distance < lenght
+    }
+    
     public static func parseFromDict(dico aDico:Dictionary<String, AnyObject>) -> Wall {
         let wall = Wall()
         wall.id = Int(aDico["id"]! as! String)!
         wall.title = aDico["nom"]! as! String
         wall.latitude = Double(aDico["latitude"]! as! String)!
         wall.longitude = Double(aDico["longitude"]! as! String)!
+        wall.lenght = Double(aDico["distance"]! as! String)!
         return wall
     }
 }

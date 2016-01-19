@@ -50,18 +50,19 @@ public class WebService : NSObject {
             ]
         ]
         
-        Alamofire.request(.POST, DOMAIN + "/wallsFromCoord", parameters: [:], encoding: .Custom({
-            (convertible, params) in
-            let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
-            do {
-                let jsonData = try NSJSONSerialization.dataWithJSONObject(bodyDic, options: NSJSONWritingOptions.PrettyPrinted)
-                mutableRequest.HTTPBody = jsonData
-            } catch let error as NSError {
-                print(error)
-            }
-            
-            return (mutableRequest, nil)
-        })).responseJSON { response in
+        let url = NSURL(string: DOMAIN + "/wallsFromCoord")
+        let encodableURLRequest = NSURLRequest(URL: url!)
+        let mutableURLRequest = encodableURLRequest.URLRequest
+        do {
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(bodyDic, options: NSJSONWritingOptions.PrettyPrinted)
+            mutableURLRequest.HTTPMethod = "POST"
+            mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            mutableURLRequest.HTTPBody = jsonData
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        Alamofire.request(mutableURLRequest).responseJSON { response in
             if (response.result.isSuccess) {
                 let test = (response.result.value as! Array<AnyObject>)
                 aDelegate.responseFromWS(array: test)
@@ -76,18 +77,19 @@ public class WebService : NSObject {
             "research" : search
         ]
         
-        Alamofire.request(.POST, DOMAIN + "/research", parameters: [:], encoding: .Custom({
-            (convertible, params) in
-            let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
-            do {
-                let jsonData = try NSJSONSerialization.dataWithJSONObject(bodyDic, options: NSJSONWritingOptions.PrettyPrinted)
-                mutableRequest.HTTPBody = jsonData
-            } catch let error as NSError {
-                print(error)
-            }
-            
-            return (mutableRequest, nil)
-        })).responseJSON { response in
+        let url = NSURL(string: DOMAIN + "/research")
+        let encodableURLRequest = NSURLRequest(URL: url!)
+        let mutableURLRequest = encodableURLRequest.URLRequest
+        do {
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(bodyDic, options: NSJSONWritingOptions.PrettyPrinted)
+            mutableURLRequest.HTTPMethod = "POST"
+            mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            mutableURLRequest.HTTPBody = jsonData
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        Alamofire.request(mutableURLRequest).responseJSON { response in
             if (response.result.isSuccess) {
                 let test = (response.result.value as! Array<AnyObject>)
                 aDelegate.responseFromWS(array: test)
@@ -119,18 +121,52 @@ public class WebService : NSObject {
             "description" : ""
         ]
         
-        Alamofire.request(.POST, DOMAIN + "/insertWall", parameters: [:], encoding: .Custom({
-            (convertible, params) in
-            let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
-            do {
-                let jsonData = try NSJSONSerialization.dataWithJSONObject(bodyDic, options: NSJSONWritingOptions.PrettyPrinted)
-                mutableRequest.HTTPBody = jsonData
-            } catch let error as NSError {
-                print(error)
+        let url = NSURL(string: DOMAIN + "/insertWall")
+        let encodableURLRequest = NSURLRequest(URL: url!)
+        let mutableURLRequest = encodableURLRequest.URLRequest
+        do {
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(bodyDic, options: NSJSONWritingOptions.PrettyPrinted)
+            mutableURLRequest.HTTPMethod = "POST"
+            mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            mutableURLRequest.HTTPBody = jsonData
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        Alamofire.request(mutableURLRequest).responseJSON { response in
+            if (response.result.isSuccess) {
+                let test = (response.result.value as! Array<AnyObject>)
+                aDelegate.responseFromWS(array: test)
+            } else {
+                aDelegate.errorFromWS()
             }
-            
-            return (mutableRequest, nil)
-        })).responseJSON { response in
+        }
+    }
+    
+    static internal func addMessage(message:Message, forWall wall:Wall, delegate aDelegate:RequestDelegate) {
+        let bodyDic = [
+            "idWall": wall.id,
+            "isImage": message.isImage ? "1" : "0",
+            "content": message.content,
+            "latitude": message.location.latitude,
+            "longitude": message.location.longitude,
+            "created": NSDate().timeIntervalSince1970,
+            "description": message.content
+        ]
+        
+        let url = NSURL(string: DOMAIN + "/insertMessage")
+        let encodableURLRequest = NSURLRequest(URL: url!)
+        let mutableURLRequest = encodableURLRequest.URLRequest
+        do {
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(bodyDic, options: NSJSONWritingOptions.PrettyPrinted)
+            mutableURLRequest.HTTPMethod = "POST"
+            mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            mutableURLRequest.HTTPBody = jsonData
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        Alamofire.request(mutableURLRequest).responseJSON { response in
             if (response.result.isSuccess) {
                 let test = (response.result.value as! Array<AnyObject>)
                 aDelegate.responseFromWS(array: test)

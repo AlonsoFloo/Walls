@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		017013C51C4EB18F0087BCE7 /* DrawableUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017013C41C4EB18F0087BCE7 /* DrawableUIImage.swift */; };
 		40A2F92882E2B49C87AF44FD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ED5AA76DA1826C958F7827 /* Pods.framework */; };
 		C58BA7441BF0DEA4004F0CCA /* WallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BA7431BF0DEA4004F0CCA /* WallViewController.swift */; };
 		C58BA7461BF0EA64004F0CCA /* AddWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BA7451BF0EA64004F0CCA /* AddWallViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		017013C41C4EB18F0087BCE7 /* DrawableUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableUIImage.swift; sourceTree = "<group>"; };
 		14D4AFB78A4FD63081424429 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		41ED5AA76DA1826C958F7827 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51C2B73E7052A27394001E5F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				C5BB61C21C158D410095BB05 /* UIDistantView.swift */,
+				017013C41C4EB18F0087BCE7 /* DrawableUIImage.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				C58BA7441BF0DEA4004F0CCA /* WallViewController.swift in Sources */,
 				C5B2409B1BDE2B610045C5AE /* UserLocationAnnotation.swift in Sources */,
 				C5F1FF911BF0B0F500C9D3C1 /* Wall.swift in Sources */,
+				017013C51C4EB18F0087BCE7 /* DrawableUIImage.swift in Sources */,
 				C58BA7481BF0EBD9004F0CCA /* AddMessageViewController.swift in Sources */,
 				C5B240931BDE154D0045C5AE /* BaseViewController.swift in Sources */,
 				C5F1FF961BF0B30C00C9D3C1 /* RequestDelegate.swift in Sources */,
@@ -455,7 +459,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Walls/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.epsi.mobile.Walls;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -472,7 +476,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Walls/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.epsi.mobile.Walls;
 				PRODUCT_NAME = "$(TARGET_NAME)";

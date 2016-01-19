@@ -37,12 +37,6 @@ class AddWallViewController: BaseViewController, CLLocationManagerDelegate, MKMa
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 50
         
-        let doubleTap = UITapGestureRecognizer(target: self, action: "didDoubleTapMap:")
-        doubleTap.numberOfTapsRequired = 2
-        doubleTap.numberOfTouchesRequired = 1
-        doubleTap.delegate = self
-        mapView.addGestureRecognizer(doubleTap)
-        
         self.circleView.userInteractionEnabled = false
         
         self.automaticallyAdjustsScrollViewInsets = true
@@ -162,12 +156,6 @@ class AddWallViewController: BaseViewController, CLLocationManagerDelegate, MKMa
         self.locationManager.stopUpdatingLocation()
         
         self.showLoader(show: false)
-    }
-    
-    func didDoubleTapMap(gestureRecognizer: UIGestureRecognizer) {
-        let coordinate = gestureRecognizer.locationInView(mapView)
-        let location2D = mapView.convertPoint(coordinate, toCoordinateFromView: mapView)
-        userLocation = UserLocationAnnotation(coordinate: location2D)
     }
     
     internal func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
