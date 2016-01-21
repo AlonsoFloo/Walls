@@ -12,15 +12,30 @@ import Alamofire
 class UIDistantView: UIImageView {
     
     internal var imageUrl:String!
+    internal var isDisplayed:Bool = false
     
     override func layoutSubviews() {
-        self.backgroundColor = UIColor.redColor()
-        Alamofire.request(.GET, imageUrl).response(){
-            [weak self] (_, _, data, _) in
-            if let goSelf = self {
-                let image = UIImage(data: data! as NSData)
-                goSelf.image = image
+        guard let url = imageUrl else {
+            isDisplayed = true
+            return
+        }
+        
+        if (!isDisplayed) {
+            isDisplayed = true
+            Alamofire.request(.GET, url).response(){
+                [weak self] (_, _, data, _) in
+                if let goSelf = self {
+                    let image = UIImage(data: data! as NSData)
+                    goSelf.image = image
+                }
             }
+        }
+    }
+    
+    func setUrl(url:String) {
+        imageUrl = url
+        if (!isDisplayed) {
+            self.layoutSubviews()
         }
     }
 

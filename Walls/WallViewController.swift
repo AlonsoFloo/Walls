@@ -28,6 +28,7 @@ class WallViewController: BaseViewController, RequestDelegate, UIScrollViewDeleg
     var imageWall: UIImage!
     var imageWallList: [UIImageView]!
     
+    internal var messageSelected:Message!
     internal var wall:Wall!
     
     override func viewDidLoad() {
@@ -43,6 +44,16 @@ class WallViewController: BaseViewController, RequestDelegate, UIScrollViewDeleg
         self.loadRightItems()
         
         setupDataForScrollView();
+    }
+    
+    func showPopUp(message: Message) {
+        self.messageSelected = message
+        self.performSegueWithIdentifier("showMessageSegueID", sender: self)
+    }
+    
+    func messageTouchUpInside(sender: UIGestureRecognizer) {
+        let tapView = sender.view
+        self.showPopUp(self.messageList[(tapView?.tag)!])
     }
     
     func loadRightItems() -> Void {
@@ -77,6 +88,10 @@ class WallViewController: BaseViewController, RequestDelegate, UIScrollViewDeleg
         if segue.identifier == "addMessageSegueID" {
             let vc = segue.destinationViewController as! AddMessageViewController
             vc.wall = wall;
+        } else if segue.identifier == "showMessageSegueID" {
+            let vc = segue.destinationViewController as! WallPopUpViewController
+            vc.wall = wall;
+            vc.message = messageSelected;
         }
     }
     
@@ -126,6 +141,7 @@ class WallViewController: BaseViewController, RequestDelegate, UIScrollViewDeleg
         self.scrollView.layoutIfNeeded()
         imageScrollView = UIImage(named: "background")
         self.scrollView.contentSize = self.view.frame.size
+        self.scrollView.canCancelContentTouches = false
         
         textColorList = [UIColor.blackColor()
             , UIColor.blueColor()
@@ -180,7 +196,6 @@ class WallViewController: BaseViewController, RequestDelegate, UIScrollViewDeleg
         }
         
         scrollWidth += padding + Int(maxWidth)
-
         
         dispatch_async(dispatch_get_main_queue()) { [weak self] in
             if let goSelf = self {
@@ -193,12 +208,15 @@ class WallViewController: BaseViewController, RequestDelegate, UIScrollViewDeleg
                 }
                 
                 goSelf.loadBackground(start: previousWidth)
+                var index = -1
                 
                 for message in goSelf.messageList {
+                    index++
                     var view:UIView = UIView()
                     if (message.isImage) {
                         let viewImage = UIDistantView(frame: message.rect)
                         viewImage.imageUrl = message.content
+                        viewImage.userInteractionEnabled = true
                         view = viewImage
                     } else {
                         let labelView = UILabel(frame: message.rect)
@@ -208,24 +226,32 @@ class WallViewController: BaseViewController, RequestDelegate, UIScrollViewDeleg
                         let range:UInt32 = UInt32(tabSize)
                         let indexColor = Int(arc4random_uniform(range))
                         labelView.textColor = goSelf.textColorList[indexColor]
-                        let angleDouble = UInt32(WallViewController.MAXLABELDEGRES*2)
-                        let angleRotation = Double(arc4random_uniform(angleDouble)) - Double(WallViewController.MAXLABELDEGRES)
-                        let angleRadian = CGFloat(angleRotation * (M_1_PI / 180))
-                        labelView.transform = CGAffineTransformMakeRotation(angleRadian)
                         
                         labelView.numberOfLines = -1
+                        labelView.userInteractionEnabled = true
                         view = labelView
                     }
                     
+                    let angleDouble = UInt32(WallViewController.MAXLABELDEGRES*2)
+                    let angleRotation = Double(arc4random_uniform(angleDouble)) - Double(WallViewController.MAXLABELDEGRES)
+                    let angleRadian = CGFloat(angleRotation * (M_1_PI / 180))
+                    view.transform = CGAffineTransformMakeRotation(angleRadian)
+                    
+                    view.userInteractionEnabled = true
+                    
+                    let tapRecognizerMessage = UITapGestureRecognizer(target: goSelf, action: Selector("messageTouchUpInside:"))
+                    //tapRecognizerMessage.delegate = self
+                    tapRecognizerMessage.numberOfTapsRequired = 1
+                    tapRecognizerMessage.enabled = true
+                    tapRecognizerMessage.cancelsTouchesInView = true
+                    view.addGestureRecognizer(tapRecognizerMessage)
+                    view.tag = index
                     
                     goSelf.scrollView.addSubview(view)
                     goSelf.scrollView.bringSubviewToFront(view)
                 }
                 
-                
-                if #available(iOS 9.0, *) {
-                    goSelf.scrollView.layoutIfNeeded()
-                }
+                goSelf.scrollView.layoutIfNeeded()
             }
         }
     }

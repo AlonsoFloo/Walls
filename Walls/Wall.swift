@@ -11,11 +11,11 @@ import MapKit
 
 public class Wall : NSObject {
     
-    internal var id:Int = -1;
-    internal var title:String = "";
-    internal var latitude:Double = 0;
-    internal var longitude:Double = 0;
-    internal var lenght:Double = 0;
+    internal var id:Int = -1
+    internal var title:String = ""
+    internal var latitude:Double = 0
+    internal var longitude:Double = 0
+    internal var lenght:Double = 0
     
     internal var messages:[Message] = [];
     

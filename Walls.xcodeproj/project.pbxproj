@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		017013C51C4EB18F0087BCE7 /* DrawableUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017013C41C4EB18F0087BCE7 /* DrawableUIImage.swift */; };
+		0182684C1C5113760084E272 /* WallPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0182684B1C5113760084E272 /* WallPopUpViewController.swift */; };
 		40A2F92882E2B49C87AF44FD /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ED5AA76DA1826C958F7827 /* Pods.framework */; };
 		C58BA7441BF0DEA4004F0CCA /* WallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BA7431BF0DEA4004F0CCA /* WallViewController.swift */; };
 		C58BA7461BF0EA64004F0CCA /* AddWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BA7451BF0EA64004F0CCA /* AddWallViewController.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		017013C41C4EB18F0087BCE7 /* DrawableUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableUIImage.swift; sourceTree = "<group>"; };
+		0182684B1C5113760084E272 /* WallPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallPopUpViewController.swift; sourceTree = "<group>"; };
 		14D4AFB78A4FD63081424429 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		41ED5AA76DA1826C958F7827 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51C2B73E7052A27394001E5F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				C58BA7451BF0EA64004F0CCA /* AddWallViewController.swift */,
 				C58BA7471BF0EBD9004F0CCA /* AddMessageViewController.swift */,
 				C5CCECC01C3A7D5D00102928 /* FavViewController.swift */,
+				0182684B1C5113760084E272 /* WallPopUpViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				C5B240801BDE13360045C5AE /* AppDelegate.swift in Sources */,
 				C5F1FF931BF0B19C00C9D3C1 /* Message.swift in Sources */,
 				C5F1FF8C1BF089EF00C9D3C1 /* PointLocationAnnotation.swift in Sources */,
+				0182684C1C5113760084E272 /* WallPopUpViewController.swift in Sources */,
 				C58BA7461BF0EA64004F0CCA /* AddWallViewController.swift in Sources */,
 				C58BA7441BF0DEA4004F0CCA /* WallViewController.swift in Sources */,
 				C5B2409B1BDE2B610045C5AE /* UserLocationAnnotation.swift in Sources */,

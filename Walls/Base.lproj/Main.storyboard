@@ -117,6 +117,53 @@
             </objects>
             <point key="canvasLocation" x="1759" y="-2196"/>
         </scene>
+        <!--Wall Pop Up View Controller-->
+        <scene sceneID="Quk-wD-EbB">
+            <objects>
+                <viewController id="uhX-W0-jbj" customClass="WallPopUpViewController" customModule="Walls" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8hC-IK-ihg"/>
+                        <viewControllerLayoutGuide type="bottom" id="r60-SG-Elw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HCc-OA-c13">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Xu-Co-ZfJ">
+                                <rect key="frame" x="30" y="74" width="540" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qGe-gN-WRq" customClass="UIDistantView" customModule="Walls" customModuleProvider="target">
+                                <rect key="frame" x="30" y="74" width="540" height="304"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qGe-gN-WRq" secondAttribute="height" multiplier="16:9" id="Sit-Aa-Ddd"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9Xu-Co-ZfJ" firstAttribute="leading" secondItem="HCc-OA-c13" secondAttribute="leadingMargin" constant="10" id="CoC-PM-vOO"/>
+                            <constraint firstItem="qGe-gN-WRq" firstAttribute="leading" secondItem="9Xu-Co-ZfJ" secondAttribute="leading" id="IX6-XQ-I6B"/>
+                            <constraint firstItem="qGe-gN-WRq" firstAttribute="trailing" secondItem="9Xu-Co-ZfJ" secondAttribute="trailing" id="g0N-dh-K5O"/>
+                            <constraint firstItem="qGe-gN-WRq" firstAttribute="top" secondItem="9Xu-Co-ZfJ" secondAttribute="top" id="seo-0w-gwn"/>
+                            <constraint firstItem="9Xu-Co-ZfJ" firstAttribute="top" secondItem="8hC-IK-ihg" secondAttribute="bottom" constant="10" id="wjm-91-Up2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Xu-Co-ZfJ" secondAttribute="trailing" constant="10" id="zIB-U9-U8W"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="qGe-gN-WRq" id="BTl-QU-RyT"/>
+                        <outlet property="labelView" destination="9Xu-Co-ZfJ" id="WPy-sB-wRZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jog-hP-16T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2711" y="-1350"/>
+        </scene>
         <!--Wall View Controller-->
         <scene sceneID="EDz-kd-4m6">
             <objects>
@@ -149,6 +196,7 @@
                     <connections>
                         <outlet property="scrollView" destination="5o7-B9-Ard" id="dhB-Q4-ySt"/>
                         <segue destination="a0O-Vh-by4" kind="show" identifier="addMessageSegueID" id="CXd-VD-xtW"/>
+                        <segue destination="uhX-W0-jbj" kind="show" identifier="showMessageSegueID" id="fD9-Ce-CDN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCq-ih-rAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -579,6 +627,6 @@
         <image name="refresh" width="34" height="34"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HCC-Wd-Ut2"/>
+        <segue reference="mIh-td-CqT"/>
     </inferredMetricsTieBreakers>
 </document>
