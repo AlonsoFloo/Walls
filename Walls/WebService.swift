@@ -175,4 +175,58 @@ public class WebService : NSObject {
             }
         }
     }
+    
+    static internal func addLike(message:Message, forWall wall:Wall, delegate aDelegate:RequestDelegate) {
+        let bodyDic = [
+            "id": message.id
+        ]
+        
+        let url = NSURL(string: DOMAIN + "/insertMessage")
+        let encodableURLRequest = NSURLRequest(URL: url!)
+        let mutableURLRequest = encodableURLRequest.URLRequest
+        do {
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(bodyDic, options: NSJSONWritingOptions.PrettyPrinted)
+            mutableURLRequest.HTTPMethod = "POST"
+            mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            mutableURLRequest.HTTPBody = jsonData
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        Alamofire.request(mutableURLRequest).responseJSON { response in
+            if (response.result.isSuccess) {
+                let test = (response.result.value as! Array<AnyObject>)
+                aDelegate.responseFromWS(array: test)
+            } else {
+                aDelegate.errorFromWS()
+            }
+        }
+    }
+    
+    static internal func addWarning(message:Message, forWall wall:Wall, delegate aDelegate:RequestDelegate) {
+        let bodyDic = [
+            "id": message.id
+        ]
+        
+        let url = NSURL(string: DOMAIN + "/insertMessage")
+        let encodableURLRequest = NSURLRequest(URL: url!)
+        let mutableURLRequest = encodableURLRequest.URLRequest
+        do {
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(bodyDic, options: NSJSONWritingOptions.PrettyPrinted)
+            mutableURLRequest.HTTPMethod = "POST"
+            mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            mutableURLRequest.HTTPBody = jsonData
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        Alamofire.request(mutableURLRequest).responseJSON { response in
+            if (response.result.isSuccess) {
+                let test = (response.result.value as! Array<AnyObject>)
+                aDelegate.responseFromWS(array: test)
+            } else {
+                aDelegate.errorFromWS()
+            }
+        }
+    }
 }

@@ -12,9 +12,13 @@ class DataHolder: NSObject {
     
     private static var _instance:DataHolder!
     internal var favList:[Wall]
+    internal var likeList:[Int]
+    internal var warningList:[Int]
     
     override init() {
         favList = []
+        likeList = []
+        warningList = []
     }
     
     internal static func sharedInstance() -> DataHolder {
@@ -39,6 +43,8 @@ class DataHolder: NSObject {
             favArray.append(wall.convertToDict())
         }
         userDefault.setObject(favArray, forKey: "favList")
+        userDefault.setObject(likeList, forKey: "likeList")
+        userDefault.setObject(warningList, forKey: "warningList")
         
         userDefault.synchronize()
     }
@@ -51,6 +57,14 @@ class DataHolder: NSObject {
             for wallDict in favArray {
                 favList.append(Wall.convertFromDict(wallDict))
             }
+        }
+        
+        if let currentWarningList = userDefault.objectForKey("warningList") {
+            warningList = currentWarningList as! [Int]
+        }
+        
+        if let currentLikeList = userDefault.objectForKey("likeList") {
+            likeList = currentLikeList as! [Int]
         }
     }
     

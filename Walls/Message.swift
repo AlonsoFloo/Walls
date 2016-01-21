@@ -14,6 +14,7 @@ public class Message : NSObject {
     internal static let MAXWIDTH = 230
     internal static let MINWIDTH = 60
     
+    internal var id:Int = 0
     internal var like:Int = 0
     internal var alert:Int = 0
     internal var content:String = ""
@@ -30,6 +31,7 @@ public class Message : NSObject {
             let dico = value as! Dictionary<String, AnyObject>
             
             let mess = Message()
+            mess.id = Int(dico["id"]! as! String)!
             mess.like = Int(dico["like"]! as! String)!
             mess.isImage = Int(dico["isImage"]! as! String)! == 1
             mess.content = dico["content"]! as! String
@@ -58,10 +60,12 @@ public class Message : NSObject {
         var width:CGFloat = CGFloat(size)
         var height:CGFloat = 0
         if (isImage) {
-            height = width * 9 / 16
+            height = width * 183 / 118
         } else {
             let text = NSString(string: content)
-            let sizeWithAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(fontSize)]
+            //let font = UIFont.systemFontOfSize(fontSize)
+            let font = UIFont(name: "Bradley Hand", size: fontSize)!
+            let sizeWithAttributes = [NSFontAttributeName: font]
             let textSize = text.boundingRectWithSize(CGSize(width: width, height: 99999), options:  NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: sizeWithAttributes, context: nil).size
             height = textSize.height
             width = textSize.width

@@ -221,7 +221,7 @@ class WallViewController: BaseViewController, RequestDelegate, UIScrollViewDeleg
                     } else {
                         let labelView = UILabel(frame: message.rect)
                         labelView.text = message.content
-                        labelView.font = UIFont.systemFontOfSize(message.fontSize)
+                        labelView.font = UIFont(name: "Bradley Hand", size: message.fontSize) //UIFont.systemFontOfSize(message.fontSize)
                         let tabSize = goSelf.textColorList.count;
                         let range:UInt32 = UInt32(tabSize)
                         let indexColor = Int(arc4random_uniform(range))

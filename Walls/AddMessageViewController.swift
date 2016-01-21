@@ -88,15 +88,17 @@ class AddMessageViewController: BaseViewController, RequestDelegate, CLLocationM
     
     @IBAction func okPressed() {
         self.showLoader(show: true)
-        guard let newText = textView.text where newText != "" else {
-            textView.layer.borderWidth = 1
-            textView.layer.borderColor = UIColor.redColor().CGColor
-            self.showLoader(show: false)
-            return
+        if (imageView.hidden) {
+            guard let newText = textView.text where newText != "" else {
+                textView.layer.borderWidth = 1
+                textView.layer.borderColor = UIColor.redColor().CGColor
+                self.showLoader(show: false)
+                return
+            }
         }
         
         let message = Message()
-        message.content = newText
+        message.content = textView.text
         message.isImage = false
         message.location = userLocation?.coordinate
         if (!imageView.hidden) {

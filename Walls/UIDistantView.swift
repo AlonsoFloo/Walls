@@ -22,6 +22,7 @@ class UIDistantView: UIImageView {
         
         if (!isDisplayed) {
             isDisplayed = true
+            self.image = UIImage(named: "refresh")
             Alamofire.request(.GET, url).response(){
                 [weak self] (_, _, data, _) in
                 if let goSelf = self {
