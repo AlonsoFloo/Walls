@@ -101,6 +101,8 @@ class AddMessageViewController: BaseViewController, RequestDelegate, CLLocationM
         message.location = userLocation?.coordinate
         if (!imageView.hidden) {
             message.isImage = true
+            let data = UIImagePNGRepresentation(imageView.image!);
+            message.content = data!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
         }
         WebService.addMessage(message, forWall: wall, delegate: self)
     }
@@ -115,6 +117,7 @@ class AddMessageViewController: BaseViewController, RequestDelegate, CLLocationM
             imageView.red = fRed
             imageView.green = fGreen
             imageView.blue = fBlue
+            imageView.opacity = fAlpha
         }
     }
     
@@ -141,7 +144,7 @@ class AddMessageViewController: BaseViewController, RequestDelegate, CLLocationM
         if (inWall) {
             okBtn.enabled = true
         } else {
-            UIAlertView(title: "Error", message: "You'r not in the wall", delegate: nil, cancelButtonTitle: "Ok").show()
+            UIAlertView(title: "Error", message: "You are not in the wall", delegate: nil, cancelButtonTitle: "Ok").show()
             backBtnPressed()
         }
         
