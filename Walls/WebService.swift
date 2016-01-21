@@ -181,7 +181,7 @@ public class WebService : NSObject {
             "id": message.id
         ]
         
-        let url = NSURL(string: DOMAIN + "/insertMessage")
+        let url = NSURL(string: DOMAIN + "/like")
         let encodableURLRequest = NSURLRequest(URL: url!)
         let mutableURLRequest = encodableURLRequest.URLRequest
         do {
@@ -208,7 +208,7 @@ public class WebService : NSObject {
             "id": message.id
         ]
         
-        let url = NSURL(string: DOMAIN + "/insertMessage")
+        let url = NSURL(string: DOMAIN + "/alert")
         let encodableURLRequest = NSURLRequest(URL: url!)
         let mutableURLRequest = encodableURLRequest.URLRequest
         do {

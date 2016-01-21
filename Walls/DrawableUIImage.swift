@@ -22,6 +22,8 @@ class DrawableUIImage: UIImageView {
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.blackColor().CGColor
         self.userInteractionEnabled = true
+        self.opacity = 1
+        self.backgroundColor = UIColor.clearColor()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
