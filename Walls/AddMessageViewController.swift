@@ -9,14 +9,14 @@
 import UIKit
 import Foundation
 import MapKit
-import ColorSlider
+import SwiftHUEColorPicker
 
-class AddMessageViewController: BaseViewController, RequestDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
+class AddMessageViewController: BaseViewController, RequestDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, SwiftHUEColorPickerDelegate {
     
     @IBOutlet weak var okBtn: UIButton!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var imageView: DrawableUIImage!
-    @IBOutlet weak var colorPicker: ColorSlider!
+    @IBOutlet weak var colorPicker: SwiftHUEColorPicker!
     
     internal var wall:Wall!
     
@@ -44,6 +44,10 @@ class AddMessageViewController: BaseViewController, RequestDelegate, CLLocationM
         okBtn.enabled = false
         imageView.hidden = true
         colorPicker.hidden = true
+        colorPicker.direction = SwiftHUEColorPicker.PickerDirection.Vertical
+        colorPicker.type = SwiftHUEColorPicker.PickerType.Color
+        colorPicker.delegate = self
+        colorPicker.labelFontColor = UIColor.clearColor()
         
         textView.layer.borderWidth = 1
         textView.layer.borderColor = UIColor.blackColor().CGColor
@@ -109,8 +113,7 @@ class AddMessageViewController: BaseViewController, RequestDelegate, CLLocationM
         WebService.addMessage(message, forWall: wall, delegate: self)
     }
     
-    @IBAction func changedColor(sender: AnyObject) {
-        let color:UIColor = (sender as! ColorSlider).color
+    func valuePicked(color: UIColor, type: SwiftHUEColorPicker.PickerType) {
         var fRed: CGFloat = 0
         var fGreen: CGFloat = 0
         var fBlue: CGFloat = 0
