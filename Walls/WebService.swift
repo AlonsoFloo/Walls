@@ -90,7 +90,7 @@ public class WebService : NSObject {
         }
         
         Alamofire.request(mutableURLRequest).responseJSON { response in
-            if (response.result.isSuccess) {
+            if (response.result.isSuccess && response.result.value != nil) {
                 let test = (response.result.value as! Array<AnyObject>)
                 aDelegate.responseFromWS(array: test)
             } else {
