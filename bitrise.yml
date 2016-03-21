@@ -59,8 +59,28 @@ workflows:
             #!/bin/bash
             
             test -e bitrise.yml
-  _build_number:
+  _retreive_build_number:
     description: This is a utility workflow, used by other workflows.
+    steps:
+    - script:
+        title: Retreiving buildnumber
+        inputs:
+        - content: |-
+            #!/bin/bash
+            
+            #buildNumber=`curl --user build:"E$^VM8476C(XW>Kb6f;b" "http://toolsss.neopixl.com/buildnumber/nextBuildNumber.php?project=${PROJECT_TITLE}"`
+            buildNumber=4
+            if [ -z "$buildNumber" ]; then
+                echo "You are not connected to internet or tools.neopixl.com not available."
+                exit 1
+            fi
+            envman add --key NEW_BUILD_NUMBER --value $buildNumber
+            exit 0
+  
+  _build_number_ios:
+    description: This is a utility workflow, used by other workflows.
+    before_run:
+    - _retreive_build_number
     steps:
     - script:
         title: Changing buildnumber
@@ -68,22 +88,32 @@ workflows:
         - content: |-
             #!/bin/bash
             
-            #buildNumber=`curl --user build:"E$^VM8476C(XW>Kb6f;b" "http://toolsss.neopixl.com/buildnumber/nextBuildNumber.php?project=Walls"`
-            buildNumber=3
+            for i in `find $XCODE_PLIST_FOLDER -name '*.plist'` ;do
+                /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $NEW_BUILD_NUMBER" "$i"
+            done
+            exit 0
+  _build_number_android:
+    description: This is a utility workflow, used by other workflows.
+    before_run:
+    - _retreive_build_number
+    steps:
+    - script:
+        title: Changing buildnumber
+        inputs:
+        - content: |-
+            #!/bin/bash
+            
+            buildNumber=`curl --user build:"E$^VM8476C(XW>Kb6f;b" "http://toolsss.neopixl.com/buildnumber/nextBuildNumber.php?project=Walls"`
             if [ -z "$buildNumber" ]; then
                 echo "You are not connected to internet or tools.neopixl.com not available."
                 exit 1
             fi
-            for i in `find $XCODE_PLIST_FOLDER -name '*.plist'` ;do
-                /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $buildNumber" "$i"
-            done
-            exit 0
   master:
     description: |-
       This workflow will run for the master branch
     before_run:
     - _cloning
-    - _build_number
+    - _build_number_ios
     steps:
     - xcode-archive:
         title: Run Xcode archive
