@@ -69,7 +69,6 @@ workflows:
             #!/bin/bash
             
             buildNumber=`$BUILD_NUMBER_URL`
-            echo $BUILD_NUMBER_URL
             if [ -z "$buildNumber" ]; then
                 echo "You are not connected to internet or tools.neopixl.com not available."
                 exit 1
@@ -92,22 +91,6 @@ workflows:
                 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $NEW_BUILD_NUMBER" "$i"
             done
             exit 0
-  _build_number_android:
-    description: This is a utility workflow, used by other workflows.
-    before_run:
-    - _retreive_build_number
-    steps:
-    - script:
-        title: Changing buildnumber
-        inputs:
-        - content: |-
-            #!/bin/bash
-            
-            buildNumber=`curl --user build:"E$^VM8476C(XW>Kb6f;b" "http://toolsss.neopixl.com/buildnumber/nextBuildNumber.php?project=Walls"`
-            if [ -z "$buildNumber" ]; then
-                echo "You are not connected to internet or tools.neopixl.com not available."
-                exit 1
-            fi
   master:
     description: |-
       This workflow will run for the master branch
