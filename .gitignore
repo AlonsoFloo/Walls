@@ -33,3 +33,5 @@ Pods/
 Carthage/Build
 
 .DS_Store
+
+.bitrise*
