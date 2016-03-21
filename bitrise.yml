@@ -6,7 +6,7 @@ app:
   envs:
   - PROJECT_TITLE: Walls
     opts:
-      is_expand: true
+      is_expand: false
   - XCODE_PROJECT_PATH: "./${PROJECT_TITLE}.xcodeproj"
     opts:
       is_expand: true
