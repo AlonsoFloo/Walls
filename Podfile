@@ -4,3 +4,4 @@ use_frameworks!
 
 pod 'Alamofire', '3.1.2'
 pod 'SwiftHUEColorPicker'
+pod 'Buglife'

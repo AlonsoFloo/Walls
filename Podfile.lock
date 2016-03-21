@@ -1,13 +1,16 @@
 PODS:
   - Alamofire (3.1.2)
+  - Buglife (1.0.1)
   - SwiftHUEColorPicker (0.1.6)
 
 DEPENDENCIES:
   - Alamofire (= 3.1.2)
+  - Buglife
   - SwiftHUEColorPicker
 
 SPEC CHECKSUMS:
   Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
+  Buglife: 13e632b01f6d1d3eb31bc3df7f751ab987bb07e3
   SwiftHUEColorPicker: 13941d359a0d66737759248b2eed455ba03a0c33
 
 COCOAPODS: 0.39.0
