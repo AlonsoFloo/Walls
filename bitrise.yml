@@ -75,7 +75,6 @@ workflows:
             fi
             envman add --key NEW_BUILD_NUMBER --value $buildNumber
             exit 0
-  
   _build_number_ios:
     description: This is a utility workflow, used by other workflows.
     before_run:
@@ -91,6 +90,16 @@ workflows:
                 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $NEW_BUILD_NUMBER" "$i"
             done
             exit 0
+  _build_number_android:
+    description: This is a utility workflow, used by other workflows.
+    before_run:
+    - _retreive_build_number
+    steps:
+    - set-android-manifest-versions@1.0.2:
+        title: Changing buildnumber
+        inputs:
+        - manifest_file: "/path/to/AndroidManifest.xml/"
+        - version_code: "$NEW_BUILD_NUMBER"
   master:
     description: |-
       This workflow will run for the master branch
