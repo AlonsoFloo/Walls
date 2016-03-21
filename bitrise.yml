@@ -68,8 +68,8 @@ workflows:
         - content: |-
             #!/bin/bash
             
-            #buildNumber=`curl --user build:"E$^VM8476C(XW>Kb6f;b" "http://toolsss.neopixl.com/buildnumber/nextBuildNumber.php?project=${PROJECT_TITLE}"`
-            buildNumber=4
+            buildNumber=`$BUILD_NUMBER_URL`
+            echo $BUILD_NUMBER_URL
             if [ -z "$buildNumber" ]; then
                 echo "You are not connected to internet or tools.neopixl.com not available."
                 exit 1
