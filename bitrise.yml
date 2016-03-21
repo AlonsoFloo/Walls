@@ -62,3 +62,10 @@ workflows:
     steps:
     - git-clone@3.1.1: {}
     - ensure-clean-git@0.9.1: {}
+    - script:
+        title: Downloading bitrise.yml ...
+        inputs:
+        - content: |-
+            #!/bin/bash
+            
+            test -e bitrise.yml
