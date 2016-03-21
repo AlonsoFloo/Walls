@@ -53,7 +53,7 @@ workflows:
     - git-clone@3.1.1: {}
     - ensure-clean-git@0.9.1: {}
     - script:
-        title: Checking bitrise.yml file
+        title: Checking bitrise.yml file exist
         inputs:
         - content: |-
             #!/bin/bash
@@ -103,3 +103,6 @@ workflows:
         inputs:
         - project_path: "${XCODE_PROJECT_PATH}"
         - scheme: "${XCODE_PROJECT_SCHEME}"
+    - git-tag@1.0.0:
+        inputs:
+        - tag: build-$NEW_BUILD_NUMBER
