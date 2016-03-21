@@ -37,6 +37,7 @@
 /* Begin PBXFileReference section */
 		017013C41C4EB18F0087BCE7 /* DrawableUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableUIImage.swift; sourceTree = "<group>"; };
 		0182684B1C5113760084E272 /* WallPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallPopUpViewController.swift; sourceTree = "<group>"; };
+		0ED533461C9FEA8200B0E87D /* bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bridging-header.h"; sourceTree = "<group>"; };
 		14D4AFB78A4FD63081424429 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		41ED5AA76DA1826C958F7827 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51C2B73E7052A27394001E5F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 				C5B240861BDE13360045C5AE /* Assets.xcassets */,
 				C5B240881BDE13360045C5AE /* LaunchScreen.storyboard */,
 				C5B2408B1BDE13360045C5AE /* Info.plist */,
+				0ED533461C9FEA8200B0E87D /* bridging-header.h */,
 			);
 			path = Walls;
 			sourceTree = "<group>";
@@ -468,6 +470,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.epsi.mobile.Walls;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Walls/bridging-header.h";
 			};
 			name = Debug;
 		};
@@ -485,6 +488,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.epsi.mobile.Walls;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Walls/bridging-header.h";
 			};
 			name = Release;
 		};

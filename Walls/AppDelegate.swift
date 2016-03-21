@@ -24,9 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DataHolder.sharedInstance().start()
         
         Buglife.sharedBuglife().startWithAPIKey("HUJ2TuijE71gbQX10vVMTAtt")
-        //Buglife.sharedBuglife().invocationOptions = LIFEInvocationOptions.FloatingButton
-        Buglife.sharedBuglife().invocationOptions = LIFEInvocationOptions.Shake
+        Buglife.sharedBuglife().invocationOptions = LIFEInvocationOptions.FloatingButton
+        //Buglife.sharedBuglife().invocationOptions = LIFEInvocationOptions.Shake
         //Buglife.sharedBuglife().invocationOptions = LIFEInvocationOptions.Screenshot
+        
+        Instabug.startWithToken("df211ab7adb397659a475878af6e8ae2", invocationEvent: IBGInvocationEvent.Shake)
         
         return true
     }
