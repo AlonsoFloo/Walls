@@ -44,20 +44,7 @@ workflows:
         - content: |-
             #!/bin/bash
             curl --fail -X POST --data-urlencode "app_config_datastore_yaml=$(cat ${BITRISE_YML_PATH})" https://www.bitrise.io/api/app/${BITRISE_APP_SLUG}/config/upload.yml?api_token=${BITRISE_APP_API_TOKEN}
-  archive:
-    description: |-
-      This workflow will run Xcode archive on this project,
-      but first it'll run the workflows listed in
-      the `before_run` section.
-    before_run:
-    - master
-    steps:
-    - xcode-archive:
-        title: Run Xcode archive
-        inputs:
-        - project_path: "${XCODE_PROJECT_PATH}"
-        - scheme: "${XCODE_PROJECT_SCHEME}"
-  master:
+  _cloning:
     description: This is a utility workflow, used by other workflows.
     steps:
     - git-clone@3.1.1: {}
@@ -69,3 +56,14 @@ workflows:
             #!/bin/bash
             
             test -e bitrise.yml
+  master:
+    description: |-
+      This workflow will run for the master branch
+    before_run:
+    - _cloning
+    steps:
+    - xcode-archive:
+        title: Run Xcode archive
+        inputs:
+        - project_path: "${XCODE_PROJECT_PATH}"
+        - scheme: "${XCODE_PROJECT_SCHEME}"
