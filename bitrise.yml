@@ -1,1 +1,267 @@
-../Work/Integration/bitrise.yml
+---
+format_version: 1.1.0
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+app:
+  envs:
+  - PROJECT_TITLE: Walls
+    opts:
+      is_expand: false
+  - XCODE_PROJECT_PATH: "./${PROJECT_TITLE}.xcodeproj"
+    opts:
+      is_expand: true
+  - XCODE_PROJECT_SCHEME: "${PROJECT_TITLE}"
+    opts:
+      is_expand: true
+  - XCODE_PLIST_FOLDER: "./${PROJECT_TITLE}"
+    opts:
+      is_expand: true
+  - BITRISE_YML_PATH: "./bitrise.yml"
+    opts:
+      is_expand: false
+  - BITRISE_SECRETS_YML_PATH: "./bitrise.secrets.yml"
+    opts:
+      is_expand: false
+      
+trigger_map:
+- pattern: development
+  is_pull_request_allowed: false
+  workflow: develop
+- pattern: master
+  is_pull_request_allowed: false
+  workflow: master
+  
+workflows:
+  download_bitrise_yml:
+    steps:
+    - script:
+        run_if: not .IsCI
+        title: Downloading bitrise.yml ...
+        inputs:
+        - content: |-
+            #!/bin/bash
+            set -e
+            ret_content=$(curl --fail https://www.bitrise.io/api/app/${BITRISE_APP_SLUG}/config/download.yml?api_token=${BITRISE_APP_API_TOKEN})
+            echo "${ret_content}" > ${BITRISE_YML_PATH}
+            
+            open https://www.bitrise.io/api/app/${BITRISE_APP_SLUG}/secrets.yml
+    - script:
+        title: Downloading bitrise.secrets.yml ...
+        inputs:
+        - content: |-
+            #!/bin/bash
+            set -e
+  upload_bitrise_yml:
+    run_if: not .IsCI
+    steps:
+    - script:
+        title: Uploading bitrise.yml ...
+        inputs:
+        - content: |-
+            #!/bin/bash
+            curl --fail -X POST --data-urlencode "app_config_datastore_yaml=$(cat ${BITRISE_YML_PATH})" https://www.bitrise.io/api/app/${BITRISE_APP_SLUG}/config/upload.yml?api_token=${BITRISE_APP_API_TOKEN}
+  _build_init:
+    description: This is a utility workflow, used by other workflows.
+    steps:
+    - activate-ssh-key@3.1.0:
+        run_if: .IsCI
+    - git-clone@3.1.1:
+        run_if: .IsCI
+    - ensure-clean-git@0.9.1: {}
+    - script:
+        title: Checking bitrise.yml file exist
+        inputs:
+        - content: |-
+            #!/bin/bash
+            
+            test -e bitrise.yml
+    - certificate-and-profile-installer@1.4.0: {}
+  analyse_ios:
+    description: Analyse the current project code
+    steps:
+    - script:
+        title: Checking swiftlint.yml file exist
+        inputs:
+        - content: |-
+            #!/bin/bash
+            
+            test -e .swiftlint.yml
+    - script:
+        title: Install swiftlint
+        inputs:
+        - content: |-
+            #!/bin/bash
+            
+            brew install swiftlint
+            exit 0
+    - script:
+        title: Launch swiftlint
+        inputs:
+        - content: |-
+            #!/bin/bash
+            
+            swiftlint > swiftlint-export
+            exit 0
+    - deploy-to-bitrise-io@1.2.2:
+        title: Save swiftlint
+        inputs:
+        - deploy_path: "./swiftlint-export"
+    - script:
+        title: Install jazzy
+        inputs:
+        - content: |-
+            #!/bin/bash
+            
+            gem install jazzy
+            exit 0
+    - script:
+        title: Launch jazzy
+        inputs:
+        - content: |-
+            #!/bin/bash
+            
+            jazzy \
+                --clean \
+                --author Neopixl \
+                --xcodebuild-arguments -scheme,${XCODE_PROJECT_SCHEME} \
+                --swift-version 2.2 \
+                --module-version ${NEW_BUILD_NUMBER}
+                --module ${PROJECT_TITLE} \
+                --output docs
+    - deploy-to-bitrise-io@1.2.2:
+        title: Save jazzy
+        inputs:
+        - deploy_path: "./docs"
+  _increment_build_number:
+    description: This is a utility workflow, used by other workflows.
+    steps:
+    - script:
+        title: Increment buildnumber
+        inputs:
+        - content: |-
+            #!/bin/bash
+            
+            buildNumber=`curl --user $BUILD_NUMBER_URL`
+            if [ -z "$buildNumber" ]; then
+                echo "You are not connected to internet or tools.neopixl.com not available."
+                exit 1
+            fi
+            envman add --key NEW_BUILD_NUMBER --value $buildNumber
+            exit 0
+  _get_build_number:
+    description: This is a utility workflow, used by other workflows.
+    steps:
+    - script:
+        title: Get current buildnumber
+        inputs:
+        - content: |-
+            #!/bin/bash
+            
+            buildNumber=`curl --user ${BUILD_NUMBER_URL}&no_increment`
+            if [ -z "$buildNumber" ]; then
+                echo "You are not connected to internet or tools.neopixl.com not available."
+                exit 1
+            fi
+            envman add --key NEW_BUILD_NUMBER --value $buildNumber
+            exit 0
+  _build_finish:
+    description: This is a utility workflow, used by other workflows.
+    steps:
+    - random-quote@3.0.0: {}
+    - git-tag@1.0.0:
+        inputs:
+        - tag: build-$NEW_BUILD_NUMBER
+    - hockeyapp-deploy@2.3.0:
+        inputs:
+        - api_token: HOCKEYAPP_TOKEN_ID
+        - app_id: HOCKEYAPP_APP_ID
+        - notes: |-
+            Deployed $PROJECT_TITLE ($NEW_BUILD_NUMBER) on Hockey App
+            Workflow : ${BITRISE_TRIGGERED_WORKFLOW_TITLE}
+            Branch : ${BITRISE_GIT_BRANCH}
+    - hipchat@3.0.2:
+        run_if: .IsCI
+        inputs:
+        - auth_token: HIPCHAT_TOKEN_ID
+        - room_id: HIPCHAT_ROOM_ID
+        - from_name: "Bitrise CI"
+        - message: |-
+            ${RANDOM_QUOTE}
+            Deployment of $PROJECT_TITLE ($NEW_BUILD_NUMBER) run succeefully
+            Workflow : ${BITRISE_TRIGGERED_WORKFLOW_TITLE}
+            Branch : ${BITRISE_GIT_BRANCH}
+            HockeyApp : ${HOCKEYAPP_DEPLOY_PUBLIC_URL}.
+        - message_on_error: |-
+            Deployment of $PROJECT_TITLE ($NEW_BUILD_NUMBER) run with errors
+            Workflow : ${BITRISE_TRIGGERED_WORKFLOW_TITLE}
+            Branch : ${BITRISE_GIT_BRANCH}
+        - message_format: text
+  _change_build_number_ios:
+    description: This is a utility workflow, used by other workflows.
+    steps:
+    - script:
+        title: Changing buildnumber
+        inputs:
+        - content: |-
+            #!/bin/bash
+            
+            for i in `find $XCODE_PLIST_FOLDER -name '*.plist'` ;do
+                /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $NEW_BUILD_NUMBER" "$i"
+            done
+            exit 0
+  _change_build_number_android:
+    description: This is a utility workflow, used by other workflows.
+    steps:
+    - set-android-manifest-versions@1.0.2:
+        title: Changing buildnumber
+        inputs:
+        - manifest_file: "/path/to/AndroidManifest.xml"
+        - version_code: "$NEW_BUILD_NUMBER"
+  develop:
+    description: |-
+      This workflow will run for the develop branch
+    before_run:
+    - _increment_build_number
+    - _build_init
+    - _change_build_number_ios
+    after_run:
+    - analyse_ios
+    - _build_finish
+    steps:
+    - xcode-archive:
+        title: Run Xcode archive
+        inputs:
+        - project_path: "${XCODE_PROJECT_PATH}"
+        - scheme: "${XCODE_PROJECT_SCHEME}"
+        - export_options_path: ad-hoc
+  master:
+    description: |-
+      This workflow will run for the master branch
+    before_run:
+    - _get_build_number
+    - _build_init
+    - _change_build_number_ios
+    steps:
+    - xcode-archive:
+        title: Run Xcode archive
+        inputs:
+        - project_path: "${XCODE_PROJECT_PATH}"
+        - scheme: "${XCODE_PROJECT_SCHEME}"
+        - export_options_path: app-store
+    - deploy-to-itunesconnect-deliver@2.4.0:
+        inputs:
+        - itunescon_user: $ITUNES_USER
+        - password: $ITUNES_PASSWORD
+        - app_id: $ITUNES_APP_ID
+        - team_name: $ITUNES_TEAM_NAME
+    - hipchat@3.0.2:
+        run_if: .IsCI
+        inputs:
+        - auth_token: HIPCHAT_TOKEN_ID
+        - room_id: HIPCHAT_ROOM_ID
+        - from_name: "Bitrise CI"
+        - message: |-
+            $PROJECT_TITLE ($NEW_BUILD_NUMBER) deployed to iTunes Connect
+        - message_on_error: |-
+            $PROJECT_TITLE ($NEW_BUILD_NUMBER) failed to iTunes Connect
+        - message_format: text
