@@ -9,20 +9,20 @@
 import UIKit
 import MapKit
 
-public class UserLocationAnnotation : NSObject, MKAnnotation {
-    
-    private var location:CLLocationCoordinate2D!;
-    
+public class UserLocationAnnotation: NSObject, MKAnnotation {
+
+    private var location: CLLocationCoordinate2D!
+
     public var coordinate: CLLocationCoordinate2D {
         get {
             return self.location
         }
     }
-    
-    init(coordinate aCoordinate:CLLocationCoordinate2D) {
+
+    init(coordinate aCoordinate: CLLocationCoordinate2D) {
         super.init()
         self.location = aCoordinate
     }
-    
-    
+
+
 }

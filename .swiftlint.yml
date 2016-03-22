@@ -1,46 +1,110 @@
-disabled_rules: # rule identifiers to exclude from running
-  - colon
-  - comma
-  - control_statement
-  - trailing_whitespace
+# ======================
+# Rules List
+disabled_rules:
+  - force_cast
+  
 opt_in_rules: # some rules are only opt-in
   - empty_count
   - missing_docs
-  # Find all the available rules by running:
-  # swiftlint rules
-included: # paths to include during linting. `--path` is ignored if present.
-  - Walls
+ 
+
+# ======================
+# Project Config
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle)
+included: "."
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
+  
+# ======================
+# Rules Configuration
+# Find all the available rules by running:
+# swiftlint rules
+closing_brace: warning
 
-# configurable rules can be customized from this configuration file
-# binary rules can set their severity level
-force_cast: warning # implicitly
-force_try:
-  severity: warning # explicitly
-# rules that have both warning and error levels, can set just the warning level
-# implicitly
-line_length: 150
-# they can set both implicitly with an array
-type_body_length:
-  - 300 # warning
-  - 400 # error
-# or they can set both explicitly
+colon: error
+
+comma: error
+
+conditional_binding_cascade: warning
+
+control_statement: error
+
+cyclomatic_complexity: #????
+  warning: 10
+  error: 20
+
+empty_count: error
+
 file_length:
   warning: 500
   error: 1200
-# naming rules can set warnings/errors for min_length and max_length
-# additionally they can set excluded names
+  
+force_cast: warning
+  
+force_try: error
+
+force_unwrapping: warning
+
+function_body_length:
+  warning: 40
+  error: 100
+
+function_parameter_count:
+  warning: 5
+  error: 8
+
+leading_whitespace: warning
+
+legacy_constant: error
+
+legacy_constructor: error
+
+line_length: 
+  warning: 130
+  error: 200
+  
+missing_docs: public
+  
+nesting: error
+  
+opening_brace: error
+
+operator_whitespace: warning
+
+return_arrow_whitespace: error
+
+statement_position: error
+
+todo: warning
+
+trailing_newline: error
+
+trailing_semicolon: error
+
+trailing_whitespace: error
+
+type_body_length:
+  warning: 300
+  error: 400
+  
 type_name:
   min_length: 4 # only warning
   max_length: # warning and error
-    warning: 40
-    error: 50
-  excluded: iPhone # excluded via string
+    warning: 20
+    error: 35
+  excluded: # excluded via string array
+  - iPhone
+  - iPad
+  - Controller
+  - Delegate
+  - View
+
+valid_docs: error
+
 variable_name:
   min_length: # only min_length
     error: 2 # only error
   excluded: # excluded via string array
     - i
     - j
-reporter: "xcode" # reporter type (xcode, json, csv, checkstyle)
+    - k

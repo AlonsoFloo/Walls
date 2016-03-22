@@ -10,23 +10,23 @@ import UIKit
 import MapKit
 import Alamofire
 
-public class WebService : NSObject {
-    
+public class WebService: NSObject {
+
     static private let DOMAIN = "http://perso.montpellier.epsi.fr/~nicolas.guigui/wallws"
-    
-    static internal func loadPointFromMap(map:MKMapView, delegate aDelegate:RequestDelegate) {
-        var point = CGPointMake((map.bounds.origin.x), (map.bounds.origin.y))
-        let leftTop:CLLocationCoordinate2D = map.convertPoint(point, toCoordinateFromView:map)
-        
-        point = CGPointMake(map.bounds.origin.x + map.bounds.size.width, map.bounds.origin.y)
-        let rightTop:CLLocationCoordinate2D = map.convertPoint(point, toCoordinateFromView: map)
-        
-        point = CGPointMake((map.bounds.origin.x), (map.bounds.origin.y + map.bounds.size.height))
-        let leftBottom:CLLocationCoordinate2D = map.convertPoint(point, toCoordinateFromView: map)
-        
-        point = CGPointMake((map.bounds.origin.x + map.bounds.size.width), (map.bounds.origin.y + map.bounds.size.height))
-        let rightBottom:CLLocationCoordinate2D = map.convertPoint(point, toCoordinateFromView: map)
-        
+
+    static internal func loadPointFromMap(map: MKMapView, delegate aDelegate: RequestDelegate) {
+        var point = CGPoint(x: (map.bounds.origin.x), y: (map.bounds.origin.y))
+        let leftTop: CLLocationCoordinate2D = map.convertPoint(point, toCoordinateFromView:map)
+
+        point = CGPoint(x: map.bounds.origin.x + map.bounds.size.width, y: map.bounds.origin.y)
+        let rightTop: CLLocationCoordinate2D = map.convertPoint(point, toCoordinateFromView: map)
+
+        point = CGPoint(x: (map.bounds.origin.x), y: (map.bounds.origin.y + map.bounds.size.height))
+        let leftBottom: CLLocationCoordinate2D = map.convertPoint(point, toCoordinateFromView: map)
+
+        point = CGPoint(x: (map.bounds.origin.x + map.bounds.size.width), y: (map.bounds.origin.y + map.bounds.size.height))
+        let rightBottom: CLLocationCoordinate2D = map.convertPoint(point, toCoordinateFromView: map)
+
         let bodyDic = [
             "topLeft" : [
                 "lat" : leftTop.latitude,
@@ -49,7 +49,7 @@ public class WebService : NSObject {
                 "lon" : map.region.center.longitude
             ]
         ]
-        
+
         let url = NSURL(string: DOMAIN + "/wallsFromCoord")
         let encodableURLRequest = NSURLRequest(URL: url!)
         let mutableURLRequest = encodableURLRequest.URLRequest
@@ -61,9 +61,9 @@ public class WebService : NSObject {
         } catch let error as NSError {
             print(error)
         }
-        
+
         Alamofire.request(mutableURLRequest).responseJSON { response in
-            if (response.result.isSuccess) {
+            if response.result.isSuccess {
                 let test = (response.result.value as! Array<AnyObject>)
                 aDelegate.responseFromWS(array: test)
             } else {
@@ -71,12 +71,12 @@ public class WebService : NSObject {
             }
         }
     }
-    
-    static internal func searchPoint(search:String, delegate aDelegate:RequestDelegate) {
+
+    static internal func searchPoint(search: String, delegate aDelegate: RequestDelegate) {
         let bodyDic = [
             "research" : search
         ]
-        
+
         let url = NSURL(string: DOMAIN + "/research")
         let encodableURLRequest = NSURLRequest(URL: url!)
         let mutableURLRequest = encodableURLRequest.URLRequest
@@ -88,9 +88,9 @@ public class WebService : NSObject {
         } catch let error as NSError {
             print(error)
         }
-        
+
         Alamofire.request(mutableURLRequest).responseJSON { response in
-            if (response.result.isSuccess && response.result.value != nil) {
+            if response.result.isSuccess && response.result.value != nil {
                 let test = (response.result.value as! Array<AnyObject>)
                 aDelegate.responseFromWS(array: test)
             } else {
@@ -98,10 +98,10 @@ public class WebService : NSObject {
             }
         }
     }
-    
-    static internal func loadMessage(forWall wall:Int, at page:Int, withDelegate aDelegate:RequestDelegate) {
+
+    static internal func loadMessage(forWall wall: Int, at page: Int, withDelegate aDelegate: RequestDelegate) {
         Alamofire.request(.POST, DOMAIN + "/messages/\(wall)/\(page)", parameters: [:]).responseJSON { response in
-            if (response.result.isSuccess) {
+            if response.result.isSuccess {
                 let test = (response.result.value as! Array<AnyObject>)
                 aDelegate.responseFromWS(array: test)
             } else {
@@ -109,9 +109,9 @@ public class WebService : NSObject {
             }
         }
     }
-    
-    
-    static internal func addWall(wall:Wall, delegate aDelegate:RequestDelegate) {
+
+
+    static internal func addWall(wall: Wall, delegate aDelegate: RequestDelegate) {
         let bodyDic = [
             "nom" : wall.title,
             "latitude" : wall.latitude,
@@ -120,7 +120,7 @@ public class WebService : NSObject {
             "created" : NSDate().timeIntervalSince1970,
             "description" : ""
         ]
-        
+
         let url = NSURL(string: DOMAIN + "/insertWall")
         let encodableURLRequest = NSURLRequest(URL: url!)
         let mutableURLRequest = encodableURLRequest.URLRequest
@@ -132,9 +132,9 @@ public class WebService : NSObject {
         } catch let error as NSError {
             print(error)
         }
-        
+
         Alamofire.request(mutableURLRequest).responseJSON { response in
-            if (response.result.isSuccess) {
+            if response.result.isSuccess {
                 let test = (response.result.value as! Array<AnyObject>)
                 aDelegate.responseFromWS(array: test)
             } else {
@@ -142,8 +142,8 @@ public class WebService : NSObject {
             }
         }
     }
-    
-    static internal func addMessage(message:Message, forWall wall:Wall, delegate aDelegate:RequestDelegate) {
+
+    static internal func addMessage(message: Message, forWall wall: Wall, delegate aDelegate: RequestDelegate) {
         let bodyDic = [
             "idWall": wall.id,
             "isImage": message.isImage ? "1" : "0",
@@ -153,7 +153,7 @@ public class WebService : NSObject {
             "created": NSDate().timeIntervalSince1970,
             "description": message.content
         ]
-        
+
         let url = NSURL(string: DOMAIN + "/insertMessage")
         let encodableURLRequest = NSURLRequest(URL: url!)
         let mutableURLRequest = encodableURLRequest.URLRequest
@@ -165,9 +165,9 @@ public class WebService : NSObject {
         } catch let error as NSError {
             print(error)
         }
-        
+
         Alamofire.request(mutableURLRequest).responseJSON { response in
-            if (response.result.isSuccess) {
+            if response.result.isSuccess {
                 let test = (response.result.value as! Array<AnyObject>)
                 aDelegate.responseFromWS(array: test)
             } else {
@@ -175,12 +175,12 @@ public class WebService : NSObject {
             }
         }
     }
-    
-    static internal func addLike(message:Message, forWall wall:Wall, delegate aDelegate:RequestDelegate) {
+
+    static internal func addLike(message: Message, forWall wall: Wall, delegate aDelegate: RequestDelegate) {
         let bodyDic = [
             "id": message.id
         ]
-        
+
         let url = NSURL(string: DOMAIN + "/like")
         let encodableURLRequest = NSURLRequest(URL: url!)
         let mutableURLRequest = encodableURLRequest.URLRequest
@@ -192,9 +192,9 @@ public class WebService : NSObject {
         } catch let error as NSError {
             print(error)
         }
-        
+
         Alamofire.request(mutableURLRequest).responseJSON { response in
-            if (response.result.isSuccess) {
+            if response.result.isSuccess {
                 let test = (response.result.value as! Array<AnyObject>)
                 aDelegate.responseFromWS(array: test)
             } else {
@@ -202,12 +202,12 @@ public class WebService : NSObject {
             }
         }
     }
-    
-    static internal func addWarning(message:Message, forWall wall:Wall, delegate aDelegate:RequestDelegate) {
+
+    static internal func addWarning(message: Message, forWall wall: Wall, delegate aDelegate: RequestDelegate) {
         let bodyDic = [
             "id": message.id
         ]
-        
+
         let url = NSURL(string: DOMAIN + "/alert")
         let encodableURLRequest = NSURLRequest(URL: url!)
         let mutableURLRequest = encodableURLRequest.URLRequest
@@ -219,9 +219,9 @@ public class WebService : NSObject {
         } catch let error as NSError {
             print(error)
         }
-        
+
         Alamofire.request(mutableURLRequest).responseJSON { response in
-            if (response.result.isSuccess) {
+            if response.result.isSuccess {
                 let test = (response.result.value as! Array<AnyObject>)
                 aDelegate.responseFromWS(array: test)
             } else {

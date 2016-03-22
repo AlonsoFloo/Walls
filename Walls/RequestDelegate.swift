@@ -10,6 +10,6 @@ import Foundation
 
 
 protocol RequestDelegate {
-    func responseFromWS(array aArray:Array<AnyObject>)
+    func responseFromWS(array aArray: Array<AnyObject>)
     func errorFromWS()
 }
