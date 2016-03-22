@@ -158,7 +158,8 @@ class AddWallViewController: BaseViewController, CLLocationManagerDelegate, MKMa
         self.showLoader(show: false)
     }
 
-    internal func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    internal func gestureRecognizer(gestureRecognizer: UIGestureRecognizer,
+                                    shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 

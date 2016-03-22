@@ -29,8 +29,14 @@ class DataHolder: NSObject {
     }
 
     internal func start() -> Void {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateUserDefaultsFromiCloud:", name: NSUbiquitousKeyValueStoreDidChangeExternallyNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateiCloudFromUserDefaults:", name: NSUserDefaultsDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: "updateUserDefaultsFromiCloud:",
+                                                         name: NSUbiquitousKeyValueStoreDidChangeExternallyNotification,
+                                                         object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: "updateiCloudFromUserDefaults:",
+                                                         name: NSUserDefaultsDidChangeNotification,
+                                                         object: nil)
 
         self.loadData()
     }

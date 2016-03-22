@@ -60,8 +60,8 @@ legacy_constant: error
 legacy_constructor: error
 
 line_length: 
-  warning: 130
-  error: 200
+  warning: 140
+  error: 180
   
 missing_docs: public
   

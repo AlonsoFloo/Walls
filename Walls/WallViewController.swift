@@ -145,7 +145,13 @@ class WallViewController: BaseViewController, RequestDelegate, UIScrollViewDeleg
         self.scrollView.contentSize = self.view.frame.size
         self.scrollView.canCancelContentTouches = false
 
-        textColorList = [UIColor.blackColor(), UIColor.blueColor(), UIColor.darkGrayColor(), UIColor.greenColor(), UIColor.purpleColor(), UIColor.whiteColor(), UIColor.yellowColor()]
+        textColorList = [UIColor.blackColor(),
+                         UIColor.blueColor(),
+                         UIColor.darkGrayColor(),
+                         UIColor.greenColor(),
+                         UIColor.purpleColor(),
+                         UIColor.whiteColor(),
+                         UIColor.yellowColor()]
 
         scrollWidth = padding
 

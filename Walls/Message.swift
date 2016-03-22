@@ -66,7 +66,8 @@ public class Message: NSObject {
             //let font = UIFont.systemFontOfSize(fontSize)
             let font = UIFont(name: "Bradley Hand", size: fontSize)!
             let sizeWithAttributes = [NSFontAttributeName: font]
-            let textSize = text.boundingRectWithSize(CGSize(width: width, height: 99999), options:  NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: sizeWithAttributes, context: nil).size
+            let sizeLimit = CGSize(width: width, height: 99999)
+            let textSize = text.boundingRectWithSize(sizeLimit, options:  NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: sizeWithAttributes, context: nil).size
             height = textSize.height
             width = textSize.width
         }
