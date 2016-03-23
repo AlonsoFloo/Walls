@@ -49,8 +49,8 @@ class MainViewController: BaseViewController, CLLocationManagerDelegate, UITable
         self.automaticallyAdjustsScrollViewInsets = false
 
         //Show research btn
-        let searchItemBtn = self.createItemButtonWithImage("searchBtn", action: Selector("searchBtnPressed"))
-        let favBtn = self.createItemButtonWithImage("favBtn", action: Selector("favBtnPressed"))
+        let searchItemBtn = self.createItemButtonWithImage("searchBtn", action: #selector(MainViewController.searchBtnPressed))
+        let favBtn = self.createItemButtonWithImage("favBtn", action: #selector(MainViewController.favBtnPressed))
         self.navigationItem.rightBarButtonItems = [searchItemBtn, favBtn]
 
         tableView.tableFooterView = UIView()

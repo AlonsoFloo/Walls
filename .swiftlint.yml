@@ -60,8 +60,8 @@ legacy_constant: error
 legacy_constructor: error
 
 line_length: 
-  warning: 140
-  error: 180
+  warning: 180
+  error: 230
   
 missing_docs: public
   
@@ -90,14 +90,8 @@ type_body_length:
 type_name:
   min_length: 4 # only warning
   max_length: # warning and error
-    warning: 20
-    error: 35
-  excluded: # excluded via string array
-  - iPhone
-  - iPad
-  - Controller
-  - Delegate
-  - View
+    warning: 35
+    error: 50
 
 valid_docs: error
 

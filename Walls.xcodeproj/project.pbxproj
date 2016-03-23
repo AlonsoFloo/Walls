@@ -212,6 +212,7 @@
 				C5B2407A1BDE13360045C5AE /* Resources */,
 				6185AA2435716ABB8DA29F68 /* Embed Pods Frameworks */,
 				A7493953109D62B5F21F07E7 /* Copy Pods Resources */,
+				0E759AD61CA1A945001C8D8E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -277,6 +278,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0E759AD61CA1A945001C8D8E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n    exit 1\nfi";
+		};
 		6185AA2435716ABB8DA29F68 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

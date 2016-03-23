@@ -26,7 +26,7 @@ class AddWallViewController: BaseViewController, CLLocationManagerDelegate, MKMa
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        let tapOutside = UITapGestureRecognizer(target: self, action: "dismissKeyboard:")
+        let tapOutside = UITapGestureRecognizer(target: self, action: #selector(AddWallViewController.dismissKeyboard(_:)))
         self.view.addGestureRecognizer(tapOutside)
 
         locationDelegateImpl = LocationDelegateImpl(delegate: self)
